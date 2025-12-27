@@ -4,80 +4,80 @@
   <meta charset="UTF-8">
   <title>체크아웃 안내 | 코코네하우스</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;}
+    header img.logo{max-width:140px;height:auto;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang img{width:28px;height:auto;border-radius:4px;}
+    @media (min-width:600px){
+      body{max-width:700px;margin:auto;}
+      nav.lang img{width:32px;}
+      nav.lang a{font-size:0.8rem;}
+      header img.logo{max-width:160px;}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <a href="kr_index.html">
-      <img src="coconehouse_logo.png" alt="코코네하우스 로고">
+<header>
+  <a href="kr_index.html">
+    <img src="coconehouse_logo.png" alt="코코네하우스 로고" class="logo">
+  </a>
+
+  <nav class="lang" aria-label="언어 선택">
+    <a href="jp_checkout.html" aria-label="日本語">
+      <img src="jp_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">日本語</span>
     </a>
+    <a href="en_checkout.html" aria-label="English">
+      <img src="en_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">English</span>
+    </a>
+    <a href="kr_checkout.html" aria-label="한국어">
+      <img src="kr_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">한국어</span>
+    </a>
+    <a href="cn_checkout.html" aria-label="中文">
+      <img src="cn_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">中文</span>
+    </a>
+  </nav>
+</header>
 
-    <nav aria-label="언어 선택">
-      <a href="kr_checkout.html">
-        <img src="kr_flag.png" alt="한국어로 보기">
-      </a>
-      <a href="jp_checkout.html">
-        <img src="jp_flag.png" alt="日本語で読む">
-      </a>
-      <a href="en_checkout.html">
-        <img src="en_flag.png" alt="Read in English">
-      </a>
-      <a href="cn_checkout.html">
-        <img src="cn_flag.png" alt="中文阅读">
-      </a>
-    </nav>
-  </header>
+<hr>
 
-  <hr>
+<main>
+  <h1>체크아웃 안내</h1>
 
-  <!-- Main -->
-  <main>
-    <h1>체크아웃 안내</h1>
+  <p>체크아웃 시간은 <strong>10:00까지</strong>입니다.</p>
 
-    <p>
-      체크아웃 시간은 <strong>10:00까지</strong>입니다.
-    </p>
+  <h2>숙박세 안내</h2>
+  <p>체크아웃 시 방 안에 준비된 <strong>봉투</strong>에 숙박세를 넣어 주세요.</p>
 
-    <h2>숙박세 안내</h2>
+  <ul>
+    <li>숙박세: <strong>성인 1인 1박 200엔</strong></li>
+    <li>12세 이하 어린이: <strong>무료</strong></li>
+  </ul>
 
-    <p>
-      체크아웃 시 방 안에 준비된 <strong>봉투</strong>에 숙박세를 넣어 주세요.
-    </p>
+  <p>
+    예시)<br>
+    성인 2명, 3박 숙박 시<br>
+    2명 × 3박 × 200엔 = <strong>1,200엔</strong>
+  </p>
 
-    <ul>
-      <li>숙박세: <strong>성인 1인 1박 200엔</strong></li>
-      <li>12세 이하 어린이: <strong>무료</strong></li>
-    </ul>
+  <h2>체크아웃 시간 안내 요청</h2>
+  <p>원활한 정리를 위해 체크아웃 예정 시간을 미리 호스트에게 알려주시면 감사하겠습니다.</p>
 
-    <p>
-      예시)<br>
-      성인 2명, 3박 숙박 시<br>
-      2명 × 3박 × 200엔 = <strong>1,200엔</strong>
-    </p>
+  <p><a href="kr_index.html">메인 안내로 돌아가기</a></p>
+</main>
 
-    <h2>체크아웃 시간 안내 요청</h2>
+<hr>
 
-    <p>
-      원활한 정리를 위해<br>
-      체크아웃 예정 시간을 미리 호스트에게 알려주시면 감사하겠습니다.
-    </p>
-
-    <p>
-      <a href="kr_index.html">메인 안내로 돌아가기</a>
-    </p>
-  </main>
-
-  <hr>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      전화: +81-80-5684-0161<br>
-      이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-      주소: 후쿠오카현 후쿠오카시 중앙구 쿠로몬 6-4 3F
-    </p>
-  </footer>
+<footer>
+  <p>
+    전화: +81-80-5684-0161<br>
+    이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+    주소: 후쿠오카현 후쿠오카시 중앙구 쿠로몬 6-4 3F
+  </p>
+</footer>
 
 </body>
 </html>

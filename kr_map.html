@@ -4,34 +4,37 @@
   <meta charset="UTF-8">
   <title>코코네하우스 찾아오시는 길</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
+    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:0.75rem 0;}
+    header img.logo{max-width:140px;height:auto;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang img{width:28px;height:auto;border-radius:4px;}
+    @media (min-width:600px){
+      body{max-width:700px;margin:auto;}
+      header img.logo{max-width:160px;}
+      nav.lang img{width:32px;}
+      nav.lang a{font-size:0.8rem;}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <a href="kr_index.html">
-      <img src="coconehouse_logo.png" alt="코코네하우스 로고">
+      <img src="coconehouse_logo.png" alt="코코네하우스 로고" class="logo">
     </a>
-
-    <nav aria-label="언어 선택">
-      <a href="kr_map.html">
-        <img src="kr_flag.png" alt="한국어로 보기">
-      </a>
-      <a href="jp_map.html">
-        <img src="jp_flag.png" alt="日本語で読む">
-      </a>
-      <a href="en_map.html">
-        <img src="en_flag.png" alt="Read in English">
-      </a>
-      <a href="cn_map.html">
-        <img src="cn_flag.png" alt="中文阅读">
-      </a>
+    <nav class="lang" aria-label="언어 선택">
+      <a href="jp_map.html" aria-label="日本語"><img src="jp_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">日本語</span></a>
+      <a href="en_map.html" aria-label="English"><img src="en_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">English</span></a>
+      <a href="kr_map.html" aria-label="한국어"><img src="kr_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">한국어</span></a>
+      <a href="cn_map.html" aria-label="中文"><img src="cn_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">中文</span></a>
     </nav>
   </header>
 
   <hr>
 
-  <!-- Main -->
   <main>
     <h1>찾아오시는 길</h1>
 
@@ -61,7 +64,6 @@
 
   <hr>
 
-  <!-- Footer -->
   <footer>
     <p>
       전화: +81-80-5684-0161<br>
