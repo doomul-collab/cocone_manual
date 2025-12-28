@@ -1,80 +1,139 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>自行车使用说明与同意 | Cocone House</title>
+<title>自行车使用指南与同意 | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
+<style>
+header{
+  position: sticky;
+  top: 0;
+  background:white;
+  padding: 1rem 0;
+  z-index: 999;
+  border-bottom:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo img{
+  height:50px;
+  width:auto;
+}
+.langs a{margin:0 0.4rem;}
+</style>
 </head>
-
 <body>
 
 <header>
-  <a href="cn_index.html">
-    <img src="coconehouse_rogo1.png" alt="Cocone House Logo" style="height:50px;">
+  <a href="cn_index.html" class="logo">
+    <img src="coconehouse_rogo1.png" alt="Cocone House">
   </a>
-  <nav>
-    <a href="jp_bike.html">日本語</a> |
-    <a href="en_bike.html">English</a> |
-    <a href="kr_bike.html">한국어</a> |
+  <nav class="langs" aria-label="语言选择">
+    <a href="jp_bike.html">日本語</a>
+    <a href="en_bike.html">English</a>
+    <a href="kr_bike.html">한국어</a>
     <a href="cn_bike.html">中文</a>
   </nav>
 </header>
 
-<h1>自行车使用说明</h1>
+<main>
+<h1>自行车租借说明</h1>
 <p>
-Cocone House 为入住客人提供<strong>免费自行车租借服务</strong>。<br>
-使用前请阅读并同意以下内容。
+Cocone House 为住宿客人提供<strong>免费自行车</strong>。<br>
+请先阅读下列内容，<strong>完全同意后</strong>再使用。
 </p>
 
-<h2>位置与钥匙</h2>
-<p>自行车位于<strong>1楼入口内侧的停放区</strong>。</p>
-<p>钥匙放在<strong>3楼阳台的钥匙箱</strong>中。密码将在确认同意后告知。</p>
+<h2>存放位置</h2>
+<p>
+自行车放置在<strong>一楼玄关内的储放空间</strong>。<br>
+后轮印有 <strong>“cocone”</strong> 的即为租借对象。
+</p>
+
+<h2>钥匙位置</h2>
+<p>
+钥匙放在<strong>三楼紧急出口方向的阳台</strong>的密码箱中。<br>
+密码将在<strong>确认同意后单独告知</strong>。
+</p>
 
 <h2>使用前检查</h2>
 <ul>
 <li>刹车是否正常</li>
-<li>轮胎气压是否足够</li>
-<li>座椅是否固定牢靠</li>
+<li>轮胎气压</li>
+<li>座椅高度与固定状况</li>
 </ul>
+<p>如空气不足，请使用钥匙箱旁的<strong>打气筒</strong>。</p>
 
-<h2>使用规则（请务必遵守）</h2>
+<h2>使用规定（重要）</h2>
+
+<h3>1. 责任范围</h3>
+<p>
+使用期间发生的事故、受伤、财物损失以及对第三方造成的损害，<br>
+<strong>本设施概不负责</strong>。<br>
+开始使用即视为<strong>同意本规定</strong>。
+</p>
+<p>建议投保旅行保险或相关责任险。</p>
+
+<h3>2. 事故／故障发生时</h3>
+<p>
+若出现异常，请<strong>立即停止使用</strong>并联络我们。<br>
+若为事故，请务必通知<strong>警方与房主</strong>。
+</p>
+
+<h3>3. 钥匙与管理</h3>
+<p>
+请妥善保管钥匙。<br>
+若遗失钥匙，将收取<strong>2,000日元</strong>作为实际费用。
+</p>
+
+<h3>4. 禁止事项</h3>
 <ul>
-<li>事故、受伤、对他人造成损害 → <strong>房主不承担责任</strong></li>
-<li>发生事故 → <strong>请立即联系警察与房主</strong></li>
-<li>钥匙遗失需赔偿 <strong>2,000 日元</strong></li>
-<li>禁止酒后骑行 / 禁止将自行车转借给他人</li>
-<li>请遵守日本交通法规，夜间骑行特别注意安全</li>
+<li>饮酒后禁止使用</li>
+<li>遵守交通法规</li>
+<li>夜间骑行请确保照明</li>
+<li>禁止转借／转让给他人</li>
 </ul>
 
-<h2>使用同意书</h2>
+<h3>5. 同意的含义</h3>
+<p>
+开始使用代表您理解以上内容，<br>
+并<strong>愿意自行承担相关责任</strong>。
+</p>
+
+<h2>自行车租借同意表单</h2>
+
 <form action="https://formspree.io/f/xykgvpan" method="POST">
+  <input type="hidden" name="_subject" value="Cocone 自行车租借申请">
+  <input type="hidden" name="_template" value="table">
 
-<label>姓名</label><br>
-<input type="text" name="姓名" required><br><br>
+  <label>姓名</label>
+  <input type="text" name="姓名:" required>
 
-<label>房间号</label><br>
-<input type="text" name="房间号" required><br><br>
+  <label>房号</label>
+  <input type="text" name="房号:" required>
 
-<label>使用日期</label><br>
-<input type="date" name="使用日期" required><br><br>
+  <label>预计使用日期</label>
+  <input type="date" name="使用日期:" required>
 
-<label>电话</label><br>
-<input type="tel" name="电话号码" required><br><br>
+  <label>电话号码</label>
+  <input type="tel" name="电话:" required>
 
-<label>
-  <input type="checkbox" name="同意使用规则" value="yes" required>
-  我已阅读并同意上述所有规则
-</label><br><br>
+  <label style="margin-top:0.8rem;">
+    <input type="checkbox" name="同意条款:" value="yes" required>
+    我已阅读并同意以上所有条款
+  </label>
 
-<button type="submit">提交并申请使用自行车</button>
+  <p style="text-align:center;margin-top:1.2rem;">
+    <button type="submit">提交申请</button>
+  </p>
 </form>
+</main>
 
-<footer style="margin-top:40px;">
+<footer style="text-align:center;padding:2rem 0;color:#444;">
 电话: +81-80-5684-0161<br>
-邮箱: cocone.fukuoka@gmail.com<br>
-地址: 日本 福冈市 中央区 黑门 6-4 3F
+邮箱: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+地址: 日本福冈市中央区黑门6-4 3F
 </footer>
 
 </body>
