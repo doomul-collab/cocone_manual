@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Checking language... | Bicycle | Cocone House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function() {
+      const lang = (navigator.language || "").toLowerCase();
+
+      if (lang.startsWith("ko")) {
+        window.location.replace("kr_bike.html");
+      } else if (lang.startsWith("ja")) {
+        window.location.replace("jp_bike.html");
+      } else if (lang.startsWith("zh")) {
+        window.location.replace("cn_bike.html");
+      } else {
+        window.location.replace("en_bike.html");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <p>언어를 감지하고 있습니다... / Detecting language...</p>
+
+  <noscript>
+    <h2>언어 자동 감지가 꺼져 있습니다.</h2>
+    <p>언어를 선택해주세요:</p>
+    <ul>
+      <li><a href="kr_bike.html">한국어</a></li>
+      <li><a href="jp_bike.html">日本語</a></li>
+      <li><a href="en_bike.html">English</a></li>
+      <li><a href="cn_bike.html">中文</a></li>
+    </ul>
+  </noscript>
+</body>
+</html>

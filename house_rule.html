@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Checking language... | House Rules | Cocone House</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function() {
+      const lang = (navigator.language || "").toLowerCase();
+
+      if (lang.startsWith("ko")) {
+        window.location.replace("kr_house_rule.html");
+      } else if (lang.startsWith("ja")) {
+        window.location.replace("jp_house_rule.html");
+      } else if (lang.startsWith("zh")) {
+        window.location.replace("cn_house_rule.html");
+      } else {
+        window.location.replace("en_house_rule.html");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>언어를 감지하여 하우스룰 페이지로 이동 중입니다...</p>
+  <p>Detecting language and redirecting to the House Rules page...</p>
+
+  <noscript>
+    <h2>언어 자동 감지가 비활성화되어 있습니다.</h2>
+    <p>Please choose your language:</p>
+    <ul>
+      <li><a href="kr_house_rule.html">한국어</a></li>
+      <li><a href="jp_house_rule.html">日本語</a></li>
+      <li><a href="en_house_rule.html">English</a></li>
+      <li><a href="cn_house_rule.html">中文</a></li>
+    </ul>
+  </noscript>
+</body>
+</html>

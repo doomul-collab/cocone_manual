@@ -2,78 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Safety Information | Cocone House</title>
+  <title>Safety Guide (Fire · Earthquake) | Cocone House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
+    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:0.75rem 0;}
+    header img.logo{max-width:140px;height:auto;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang img{width:28px;height:auto;border-radius:4px;}
+    @media (min-width:600px){
+      body{max-width:700px;margin:auto;}
+      header img.logo{max-width:160px;}
+      nav.lang img{width:32px;}
+      nav.lang a{font-size:0.8rem;}
+    }
+  </style>
 </head>
 <body>
 
 <header>
   <a href="en_index.html">
-    <img src="coconehouse_logo.png" alt="Cocone House logo">
+    <img src="coconehouse_rogo1.png" alt="Cocone House Logo" class="logo">
   </a>
 
-  <nav aria-label="Language selection">
-    <a href="kr_safety.html"><img src="kr_flag.png" alt="Korean"></a>
-    <a href="jp_safety.html"><img src="jp_flag.png" alt="Japanese"></a>
-    <a href="en_safety.html"><img src="en_flag.png" alt="English"></a>
-    <a href="cn_safety.html"><img src="cn_flag.png" alt="Chinese"></a>
+  <nav class="lang" aria-label="Language selection">
+    <a href="jp_safety.html" aria-label="日本語"><img src="jp_flag.png"><span aria-hidden="true">日本語</span></a>
+    <a href="en_safety.html" aria-label="English"><img src="en_flag.png"><span aria-hidden="true">English</span></a>
+    <a href="kr_safety.html" aria-label="한국어"><img src="kr_flag.png"><span aria-hidden="true">한국어</span></a>
+    <a href="cn_safety.html" aria-label="中文"><img src="cn_flag.png"><span aria-hidden="true">中文</span></a>
   </nav>
 </header>
 
 <hr>
 
 <main>
-  <h1>Safety Information (Earthquake / Fire)</h1>
+  <h1>Safety Guide<br>(Fire · Earthquake)</h1>
 
-  <h2>In Case of Earthquake</h2>
-  <ul>
-    <li>Stay calm and protect yourself.</li>
-    <li>Take cover under a table or protect your head.</li>
-    <li>After the shaking stops, evacuate calmly using the emergency exit.</li>
-  </ul>
+  <p>
+    In case of an emergency, please stay calm and follow the instructions below.
+  </p>
 
   <h2>In Case of Fire</h2>
   <ul>
-    <li>If you discover a fire, alert others immediately.</li>
-    <li>Keep low to avoid smoke while evacuating.</li>
-    <li>Do not use elevators. Use the emergency stairs.</li>
+    <li>If you see smoke or fire, evacuate the building immediately.</li>
+    <li><strong>Do not use the elevator</strong> — please use the stairs.</li>
+    <li>Once outside, contact the host from a safe location.</li>
   </ul>
 
-  <h2>Evacuation Route & Emergency Items</h2>
-  <p>
-    Emergency exits are located near the <strong>entrance and emergency stairways</strong>.<br>
-    An <strong>emergency flashlight</strong> is located next to the entrance door.
-  </p>
+  <h2>In Case of Earthquake</h2>
+  <ul>
+    <li>Protect yourself under a desk or a sturdy table until the shaking stops.</li>
+    <li>When the shaking stops, secure an exit and check your surroundings first.</li>
+    <li>Please avoid rushing outside; follow guidance and posted instructions.</li>
+  </ul>
 
-  <h2>Designated Evacuation Area (Fukuoka City)</h2>
+  <h2>Evacuation Route</h2>
   <p>
-    The nearest designated evacuation area is <strong>Ohori Park</strong>.<br>
-    Please check the location using the link below.
+    Please check the <strong>evacuation route map</strong> posted near the entrance door of your room.
   </p>
   <p>
-    <a href="https://www.google.com/maps/search/Ohori+Park+Fukuoka+evacuation" target="_blank" rel="noopener">
-      View Ohori Park on Google Maps
+    You can also verify official evacuation sites and routes on the website below:
+  </p>
+  <p>
+    <a href="https://www.city.fukuoka.lg.jp/soki/kokusai/shisei/disasterprevention/disasterinformationen.html"
+       target="_blank" rel="noopener">
+      Fukuoka City Official Disaster Information (English)
     </a>
   </p>
 
-  <h2>Emergency Numbers</h2>
-  <ul>
-    <li>Police: 110</li>
-    <li>Fire & Ambulance: 119</li>
-  </ul>
-
+  <h2>Emergency Items</h2>
   <p>
-    <a href="en_index.html">Back to Main Menu</a>
+    An <strong>emergency lantern</strong> is located next to the entrance door.<br>
+    Please use it in case of power outage or emergency.
   </p>
+
+  <h2>Emergency Contacts</h2>
+  <ul>
+    <li>Fire & Ambulance: <strong>119</strong></li>
+    <li>Accommodation assistance: Please contact the host</li>
+  </ul>
 </main>
 
 <hr>
 
 <footer>
   <p>
-    Phone: +81-80-5684-0161<br>
+    Tel: +81-80-5684-0161<br>
     Email: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    Address: 6-4 Kuromon, Chuo-ku, Fukuoka-shi, Fukuoka 3F
+    Address: 6-4 Kuromon, Chuo-ku, Fukuoka City, Fukuoka, 3F
   </p>
 </footer>
 

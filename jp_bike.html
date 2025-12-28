@@ -1,153 +1,124 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>自転車利用のご案内・同意 | ココネハウス</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>自転車の利用案内および同意 | ココネハウス</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<style>
+header{
+  position: sticky;
+  top: 0;
+  background:white;
+  padding: 1rem 0;
+  z-index: 999;
+  border-bottom:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo img{
+  height:50px;
+  width:auto;
+}
+.langs a{margin:0 0.4rem;}
+</style>
 </head>
 <body>
 
 <header>
-  <a href="jp_index.html">
-    <img src="coconehouse_logo.png" alt="ココネハウス ロゴ">
+  <a href="jp_index.html" class="logo">
+    <img src="coconehouse_rogo1.png" alt="Cocone House">
   </a>
-
-  <nav aria-label="言語選択">
-    <a href="kr_bike.html"><img src="kr_flag.png" alt="한국어"></a>
-    <a href="jp_bike.html"><img src="jp_flag.png" alt="日本語"></a>
-    <a href="en_bike.html"><img src="en_flag.png" alt="English"></a>
-    <a href="cn_bike.html"><img src="cn_flag.png" alt="中文"></a>
+  <nav class="langs" aria-label="言語選択">
+    <a class="jp lang-btn" href="jp_byke_shin.html"><span>日本語</span></a>
+    <a class="en lang-btn" href="en_bike.html"><span>English</span></a>
+    <a class="kr lang-btn" href="kr_bike.html"><span>한국어</span></a>
+    <a class="cn lang-btn" href="cn_bike.html"><span>中文</span></a>
   </nav>
 </header>
 
-<hr>
-
 <main>
-  <h1>自転車利用のご案内</h1>
+<h1>自転車の利用案内</h1>
+<p>ココネハウスではご宿泊のお客様に<strong>無料で自転車を貸し出し</strong>しています。<br>
+以下の案内と利用規則をよく読み、<strong>同意された方のみ</strong>ご利用ください。</p>
 
-  <p>
-    ココネハウスでは、ご宿泊のお客様に <strong>無料で自転車</strong> を貸し出しています。<br>
-    以下の案内と利用規約をよくお読みいただき、同意のうえご利用ください。
+<h2>自転車の場所</h2>
+<p>自転車は<strong>1階玄関奥の自転車保管スペース</strong>にあります。<br>
+後輪に<strong>「cocone」</strong>と記された自転車をご利用ください。</p>
+
+<h2>鍵の保管場所</h2>
+<p>鍵は<strong>3階の非常口方向ベランダ</strong>にある鍵ボックスに保管しています。<br>
+暗証番号は<strong>利用規則へ同意されたお客様に個別連絡</strong>いたします。</p>
+
+<h2>ご利用前の点検</h2>
+<ul>
+<li>ブレーキは正常に動きますか？</li>
+<li>タイヤの空気圧は十分ですか？</li>
+<li>サドルはしっかり固定されていますか？</li>
+</ul>
+<p>空気が不足している場合は、<br><strong>鍵ボックス横の空気入れ</strong>をご利用ください。</p>
+
+<h2>利用規則（重要）</h2>
+
+<h3>1. 責任範囲</h3>
+<p>自転車利用中の事故・怪我・第三者への損害について、<br>
+<strong>ホストは一切の責任を負いません。</strong><br>
+利用開始時点で、お客様ご自身の責任で利用するものとみなします。</p>
+
+<p><strong>旅行保険・賠償責任保険</strong>の加入を推奨します。</p>
+
+<h3>2. 事故・故障時</h3>
+<p>事故・故障が起きた場合は<strong>速やかに利用を中止</strong>しホストへご連絡ください。<br>
+事故発生時は<strong>警察とホストの双方へ必ずご連絡</strong>ください。</p>
+
+<h3>3. 鍵と自転車の管理</h3>
+<p>紛失・盗難・破損にご注意ください。<br>
+<strong>鍵を紛失した場合は 2,000円をご負担</strong>いただきます。</p>
+
+<h3>4. 禁止事項と注意</h3>
+<ul>
+<li>飲酒後の利用禁止</li>
+<li>交通ルール遵守</li>
+<li>夜間利用時の安全確保</li>
+<li>第三者への貸与・譲渡禁止</li>
+</ul>
+
+<h3>5. 同意の意味</h3>
+<p>ご利用開始は、<br>上記内容を理解し<strong>自己責任で利用することに同意</strong>したものとみなします。</p>
+
+<h2>自転車利用 同意フォーム</h2>
+
+<form action="https://formspree.io/f/xykgvpan" method="POST">
+  <input type="hidden" name="_subject" value="ココネ 自転車利用申請">
+
+  <label>お名前</label>
+  <input type="text" name="お名前" required>
+
+  <label>お部屋番号</label>
+  <input type="text" name="部屋番号" required>
+
+  <label>利用予定日</label>
+  <input type="date" name="利用日" required>
+
+  <label>電話番号</label>
+  <input type="tel" name="電話番号" required>
+
+  <label style="margin-top:0.8rem;">
+    <input type="checkbox" name="規則同意" value="yes" required>
+    規則を読み、同意します
+  </label>
+
+  <p style="text-align:center;margin-top:1.2rem;">
+    <button type="submit">同意して申請</button>
   </p>
-
-  <h2>自転車の場所</h2>
-  <p>
-    自転車は <strong>1階玄関の奥にある自転車置き場</strong> にあります。<br>
-    後輪に <strong>「cocone」</strong> と表示のある自転車をご利用ください。
-  </p>
-
-  <h2>鍵について</h2>
-  <p>
-    自転車の鍵は <strong>3階 非常口方向のベランダ</strong> にある鍵ボックスにあります。<br>
-    暗証番号は、利用規約に同意されたお客様へ <strong>ホストが別途ご案内</strong> します。
-  </p>
-
-  <h2>利用前の確認</h2>
-  <ul>
-    <li>ブレーキが正常に作動するか確認してください。</li>
-    <li>タイヤの空気圧が十分か確認してください。</li>
-    <li>サドルがしっかり固定されているか確認してください。</li>
-  </ul>
-  <p>
-    空気が不足している場合は、<br>
-    <strong>鍵ボックス横の空気ポンプ</strong> をご使用ください。
-  </p>
-
-  <hr>
-
-  <h2>自転車利用規約（重要）</h2>
-
-  <h3>1. 責任について</h3>
-  <p>
-    自転車利用中に発生した事故、けが、第三者への損害について、<br>
-    <strong>ホストは一切の責任を負いません。</strong><br>
-    お客様ご自身の責任においてご利用ください。
-  </p>
-  <p>
-    旅行保険・個人賠償責任保険への加入を強くおすすめします。
-  </p>
-
-  <h3>2. 事故・故障時</h3>
-  <p>
-    事故または故障が発生した場合は、<br>
-    <strong>直ちに利用を中止し、ホストへご連絡ください。</strong><br>
-    事故の場合は、<strong>警察およびホストの両方へ連絡</strong>をお願いします。
-  </p>
-
-  <h3>3. 鍵・自転車の管理</h3>
-  <p>
-    鍵や自転車の紛失・盗難・破損には十分ご注意ください。<br>
-    <strong>鍵を紛失した場合は 2,000円</strong> をご負担いただきます。
-  </p>
-
-  <h3>4. 利用上の注意</h3>
-  <ul>
-    <li>飲酒後の自転車利用は禁止です。</li>
-    <li>交通ルールを必ず守ってください。</li>
-    <li>夜間は特に注意して走行してください。</li>
-    <li>第三者への貸与・譲渡は禁止です。</li>
-  </ul>
-
-  <h3>5. 同意について</h3>
-  <p>
-    本利用規約に同意し自転車を利用することは、<br>
-    上記内容を理解し、自己責任で利用することに同意したものとみなします。
-  </p>
-
-  <hr>
-
-  <h2>自転車利用 同意フォーム</h2>
-
-  <form action="https://formspree.io/f/xykgvpan" method="POST">
-    <p>
-      <label>お名前：<br>
-        <input type="text" name="name" required>
-      </label>
-    </p>
-
-    <p>
-      <label>部屋番号：<br>
-        <input type="text" name="room_number" required>
-      </label>
-    </p>
-
-    <p>
-      <label>利用日：<br>
-        <input type="date" name="use_date" required>
-      </label>
-    </p>
-
-    <p>
-      <label>連絡先電話番号：<br>
-        <input type="tel" name="phone" required>
-      </label>
-    </p>
-
-    <p>
-      <label>
-        <input type="checkbox" name="agree" value="yes" required>
-        上記の自転車利用規約を読み、内容に同意します。
-      </label>
-    </p>
-
-    <p>
-      <button type="submit">同意して自転車を利用する</button>
-    </p>
-  </form>
-
-  <p>
-    <a href="jp_index.html">メイン案内に戻る</a>
-  </p>
+</form>
 </main>
 
-<hr>
-
-<footer>
-  <p>
-    電話：+81-80-5684-0161<br>
-    メール：<a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    住所：福岡県福岡市中央区黒門6-4 3F
-  </p>
+<footer style="text-align:center;padding:2rem 0;color:#444;">
+電話: +81-80-5684-0161<br>
+メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+住所: 福岡県福岡市中央区黒門6-4 3F
 </footer>
 
 </body>

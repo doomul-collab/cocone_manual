@@ -2,78 +2,80 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>安全案内（地震・火災） | ココネハウス</title>
+  <title>安全案内（火災・地震） | ココネハウス</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:0.75rem 0;}
+    header img.logo{max-width:140px;height:auto;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;}
+    nav.lang a{text-decoration:none;color:#000;font-size:0.8rem;}
+    body{padding:0 1rem;line-height:1.6;font-family:system-ui,sans-serif;}
+    img.flag{width:28px;height:auto;border-radius:4px;}
+    @media (min-width:600px){body{max-width:700px;margin:auto;}}
+  </style>
 </head>
 <body>
 
 <header>
   <a href="jp_index.html">
-    <img src="coconehouse_logo.png" alt="ココネハウス ロゴ">
+    <img src="coconehouse_rogo1.png" alt="ココネハウス ロゴ" class="logo">
   </a>
 
-  <nav aria-label="言語選択">
-    <a href="kr_safety.html"><img src="kr_flag.png" alt="한국어"></a>
-    <a href="jp_safety.html"><img src="jp_flag.png" alt="日本語"></a>
-    <a href="en_safety.html"><img src="en_flag.png" alt="English"></a>
-    <a href="cn_safety.html"><img src="cn_flag.png" alt="中文"></a>
+  <nav class="lang" aria-label="言語選択">
+    <a href="jp_safety.html">日本語</a>
+    <a href="en_safety.html">English</a>
+    <a href="kr_safety.html">한국어</a>
+    <a href="cn_safety.html">中文</a>
   </nav>
 </header>
 
 <hr>
 
 <main>
-  <h1>安全案内（地震・火災）</h1>
+  <h1>安全案内（火災・地震）</h1>
+  <p>非常時は、深呼吸を一度。落ち着き、下記の手順に沿って行動してください。</p>
 
-  <h2>地震が発生した場合</h2>
+  <h2>火災発生時</h2>
   <ul>
-    <li>落ち着いて行動し、身の安全を確保してください。</li>
-    <li>机の下など、頭を守れる場所に移動してください。</li>
-    <li>揺れが収まった後、非常口から落ち着いて避難してください。</li>
+    <li>煙や炎を確認したら、すぐに屋外へ避難してください。</li>
+    <li>エレベーターは使用せず、階段をご利用ください。</li>
+    <li>安全を確保したうえで、ホストへご連絡ください。</li>
   </ul>
 
-  <h2>火災が発生した場合</h2>
+  <h2>地震発生時</h2>
   <ul>
-    <li>火災を発見したら、周囲に知らせてください。</li>
-    <li>煙を吸わないよう、姿勢を低くして避難してください。</li>
-    <li>エレベーターは使用せず、非常階段を利用してください。</li>
+    <li>揺れが収まるまで、机の下など安全な場所で身を守ってください。</li>
+    <li>落ち着いたら出口を確保し、周囲の状況を確認してください。</li>
+    <li>むやみに飛び出さず、周囲の状況と案内に従ってください。</li>
   </ul>
 
-  <h2>避難経路・備品</h2>
+  <h2>避難経路と集合場所</h2>
+  <p>出入口付近に掲示された<strong>避難経路案内</strong>をご確認ください。</p>
+  <p>最寄りの避難場所や災害情報は、福岡市公式ページをご参照ください。</p>
   <p>
-    非常口は<strong>玄関付近および非常階段</strong>です。<br>
-    玄関横に<strong>非常用懐中電灯</strong>があります。必要に応じてご使用ください。
-  </p>
-
-  <h2>避難場所（福岡市指定）</h2>
-  <p>
-    最寄りの指定避難場所は <strong>大濠公園</strong> です。<br>
-    下記リンクより、福岡市の避難場所をご確認ください。
-  </p>
-  <p>
-    <a href="https://www.google.com/maps/search/大濠公園+福岡+避難場所" target="_blank" rel="noopener">
-      大濠公園（避難場所）を地図で見る
+    <a href="https://www.city.fukuoka.lg.jp/soki/kokusai/shisei/disasterprevention/disasterinformationen.html" target="_blank" rel="noopener">
+      福岡市 災害情報（公式サイト）
     </a>
   </p>
 
-  <h2>緊急連絡先</h2>
-  <ul>
-    <li>警察：110</li>
-    <li>消防・救急：119</li>
-  </ul>
+  <h2>非常用備品</h2>
+  <p>出入口横に<strong>非常用ランタン</strong>を設置しています。停電や緊急時にお使いください。</p>
 
-  <p>
-    <a href="jp_index.html">メイン案内に戻る</a>
-  </p>
+  <h2>緊急連絡</h2>
+  <ul>
+    <li>火災・救急：<strong>119</strong></li>
+    <li>宿泊に関する緊急連絡：ホストへご連絡ください</li>
+  </ul>
 </main>
 
 <hr>
 
 <footer>
   <p>
-    電話：+81-80-5684-0161<br>
-    メール：<a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    住所：福岡県福岡市中央区黒門6-4 3F
+    電話: +81-80-5684-0161<br>
+    メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+    住所: 福岡県福岡市中央区黒門6-4 3F
   </p>
 </footer>
 

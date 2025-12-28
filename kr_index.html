@@ -5,16 +5,36 @@
 <title>코코네하우스 이용 안내</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
+<style>
+header{
+  position: sticky;
+  top: 0;
+  background:white;
+  padding: 1rem 0;
+  z-index: 999;
+  border-bottom:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo img{
+  height:50px;
+  width:auto;
+}
+.langs a{margin:0 0.4rem;}
+</style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Cocone House</div>
+  <a href="kr_index.html" class="logo">
+    <img src="coconehouse_rogo1.png" alt="Cocone House">
+  </a>
   <nav class="langs" aria-label="언어 선택">
-    <a class="jp lang-btn" href="jp_index.html" aria-label="日本語"><span>日本語</span></a>
-    <a class="en lang-btn" href="en_index.html" aria-label="English"><span>English</span></a>
-    <a class="kr lang-btn" href="kr_index.html" aria-label="한국어"><span>한국어</span></a>
-    <a class="cn lang-btn" href="cn_index.html" aria-label="中文"><span>中文</span></a>
+    <a class="jp lang-btn" href="jp_index.html"><span>日本語</span></a>
+    <a class="en lang-btn" href="en_index.html"><span>English</span></a>
+    <a class="kr lang-btn" href="kr_index.html"><span>한국어</span></a>
+    <a class="cn lang-btn" href="cn_index.html"><span>中文</span></a>
   </nav>
 </header>
 

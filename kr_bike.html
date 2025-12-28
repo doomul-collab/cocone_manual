@@ -5,16 +5,36 @@
 <title>자전거 이용 안내 및 동의 | 코코네하우스</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
+<style>
+header{
+  position: sticky;
+  top: 0;
+  background:white;
+  padding: 1rem 0;
+  z-index: 999;
+  border-bottom:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo img{
+  height:50px;
+  width:auto;
+}
+.langs a{margin:0 0.4rem;}
+</style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Cocone House</div>
+  <a href="kr_index.html" class="logo">
+    <img src="coconehouse_rogo1.png" alt="Cocone House">
+  </a>
   <nav class="langs" aria-label="언어 선택">
-    <a class="jp lang-btn" href="jp_bike.html" aria-label="日本語"><span>日本語</span></a>
-    <a class="en lang-btn" href="en_bike.html" aria-label="English"><span>English</span></a>
-    <a class="kr lang-btn" href="kr_bike.html" aria-label="한국어"><span>한국어</span></a>
-    <a class="cn lang-btn" href="cn_bike.html" aria-label="中文"><span>中文</span></a>
+    <a class="jp lang-btn" href="jp_bike.html"><span>日本語</span></a>
+    <a class="en lang-btn" href="en_bike.html"><span>English</span></a>
+    <a class="kr lang-btn" href="kr_bike.html"><span>한국어</span></a>
+    <a class="cn lang-btn" href="cn_bike.html"><span>中文</span></a>
   </nav>
 </header>
 
@@ -95,10 +115,6 @@
     <button type="submit">동의하고 자전거 이용 신청</button>
   </p>
 </form>
-
-<p style="margin-top:2rem;">
-  <a href="kr_index.html">메인 안내로 돌아가기</a>
-</p>
 </main>
 
 <footer style="text-align:center;padding:2rem 0;color:#444;">
