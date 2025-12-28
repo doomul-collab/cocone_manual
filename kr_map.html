@@ -2,56 +2,69 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>찾아오시는 길 | 코코네하우스</title>
+  <title>찾아오는 길 | 코코네하우스</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    header{
+      position: sticky;
+      top: 0;
+      background:white;
+      padding: 1rem 0;
+      border-bottom:1px solid #ddd;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      z-index:999;
+    }
+    .logo img{height:50px;width:auto;}
+    .langs a{margin:0 0.3rem;}
+    img{max-width:100%;height:auto;}
+  </style>
 </head>
 <body>
 
 <header>
-  <a href="kr_index.html">
-    <img src="coconehouse_rogo1.png" alt="코코네하우스 로고" class="logo">
+  <a href="kr_index.html" class="logo">
+    <img src="coconehouse_rogo1.png" alt="코코네하우스">
   </a>
-  <nav class="lang" aria-label="언어 선택">
+  <nav class="langs" aria-label="언어 선택">
     <a href="jp_map.html">日本語</a>
     <a href="en_map.html">English</a>
-    <a href="kr_mappi.html">한국어</a>
+    <a href="kr_map.html">한국어</a>
     <a href="cn_map.html">中文</a>
   </nav>
 </header>
 
-<hr>
-
 <main>
-  <h1>찾아오시는 길</h1>
+  <h1>찾아오는 길</h1>
+
   <p>
-    <a href="https://www.google.com/maps/search/?api=1&query=후쿠오카현+후쿠오카시+중앙구+쿠로몬+6-4"
+    <a href="https://www.google.com/maps/search/?api=1&query=福岡県+福岡市+中央区+黒門+6-4"
        target="_blank" rel="noopener">
-      구글 지도에서 코코네하우스 위치 보기
+      📌 코코네하우스 위치 (Google 지도에서 보기)
     </a>
   </p>
 
-  <h2>지하철 이용 시</h2>
+  <h2>🚆 지하철 이용 시</h2>
   <p>
-    후쿠오카 지하철 공항선 도진마치역 하차 (역 번호 K05)<br>
-    6번 출구로 나와 직진 30미터<br>
-    후쿠오카은행에서 우회전 후 약 10미터 이동<br>
-    치과의원과 파란 자판기 사이 골목으로 들어오면 현관입니다.
+    후쿠오카 지하철 공항선 <strong>도진마치역 (K05)</strong> 하차<br>
+    ❶ <strong>6번 출구</strong>로 나옴<br>
+    ❷ 직진 <strong>약 30m</strong><br>
+    ❸ <strong>후쿠오카 은행</strong>에서 우회전 후 10m 이동<br>
+    ❹ <strong>치과 간판</strong>과 <strong>파란 자판기</strong> 사이 골목 안으로 진입 → 건물 입구
   </p>
 
-  <h2>사진으로 보는 길 안내</h2>
+  <h2>📸 사진으로 보는 길 안내</h2>
   <img src="street.jpg"
-       alt="도진마치역에서 내려 건물 외관, 치과 간판, 건물 통로를 거쳐 현관으로 들어오는 길을 순서대로 보여주는 안내 사진"
-       style="max-width:100%; height:auto;">
+       alt="도진마치역 6번 출구에서 코코네하우스까지 가는 길. 후쿠오카 은행, 치과 간판, 파란 자판기, 골목, 건물 입구 순서 안내 사진.">
 </main>
 
-<hr>
-
-<footer>
-  <p>
-    전화: +81-80-5684-0161<br>
-    이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    주소: 후쿠오카현 후쿠오카시 중앙구 쿠로몬 6-4 3F
-  </p>
+<footer style="text-align:center;padding:2rem 0;color:#444;">
+  전화: +81-80-5684-0161<br>
+  이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+  주소: 일본 후쿠오카시 중앙구 구로몬 6-4 (3F)
 </footer>
 
 </body>

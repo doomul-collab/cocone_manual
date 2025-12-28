@@ -2,97 +2,104 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>기타 안내 | 코코네하우스</title>
+  <title>주변 안내 | 코코네하우스</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    header{
+      position: sticky;
+      top: 0;
+      background:white;
+      padding: 1rem 0;
+      z-index:999;
+      border-bottom:1px solid #ddd;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .logo img{height:50px;width:auto;}
+    .langs a{margin:0 0.4rem;}
+  </style>
 </head>
+
 <body>
 
 <header>
-  <a href="kr_index.html">
+  <a href="kr_index.html" class="logo">
     <img src="coconehouse_rogo1.png" alt="코코네하우스 로고">
   </a>
 
-  
-<nav class="lang" aria-label="언어 선택" style="display:flex;gap:0.5rem;align-items:center;">
-  <a href="jp_etc.html" aria-label="日本語"><img src="jp_flag.png" alt="" aria-hidden="true" style="width:28px;height:auto;border-radius:4px;"><span aria-hidden="true">日本語</span></a>
-  <a href="en_etc.html" aria-label="English"><img src="en_flag.png" alt="" aria-hidden="true" style="width:28px;height:auto;border-radius:4px;"><span aria-hidden="true">English</span></a>
-  <a href="kr_etc.html" aria-label="한국어"><img src="kr_flag.png" alt="" aria-hidden="true" style="width:28px;height:auto;border-radius:4px;"><span aria-hidden="true">한국어</span></a>
-  <a href="cn_etc.html" aria-label="中文"><img src="cn_flag.png" alt="" aria-hidden="true" style="width:28px;height:auto;border-radius:4px;"><span aria-hidden="true">中文</span></a>
-</nav>
-
+  <nav class="langs" aria-label="언어 선택">
+    <a href="jp_etc.html">日本語</a>
+    <a href="en_etc.html">English</a>
+    <a href="kr_etc.html">한국어</a>
+    <a href="cn_etc.html">中文</a>
+  </nav>
 </header>
 
-<hr>
-
 <main>
-  <h1>기타 안내</h1>
-  <p>코코네하우스 주변의 편의시설과 관광지를 소개합니다.</p>
+  <h1>주변 안내</h1>
+  <p>코코네하우스 근처에서 머무는 동안 도움이 될 만한 곳들입니다.</p>
 
-  <h2>주변 편의시설</h2>
+  <h2>편의점 / 마트</h2>
   <ul>
     <li>
-      <strong>로손 (Lawson)</strong> – 도진마치역 앞, 24시간 운영<br>
+      <strong>로손 (Lawson)</strong> — 도진마치역 앞, 24시간 영업<br>
       <a href="https://www.google.com/maps/search/Lawson+Tojinmachi+Fukuoka" target="_blank">지도 보기</a>
     </li>
     <li>
-      <strong>패밀리마트 (FamilyMart)</strong> – 도로 건너편, 24시간 운영<br>
+      <strong>패밀리마트 (FamilyMart)</strong> — 길 건너편, 24시간 영업<br>
       <a href="https://www.google.com/maps/search/FamilyMart+Tojinmachi+Fukuoka" target="_blank">지도 보기</a>
     </li>
     <li>
-      <strong>맥스밸류 (MaxValu)</strong> – 08:00 ~ 24:00 영업<br>
-      늦은 시간까지 저렴하게 식료품과 생활용품을 구입할 수 있습니다.<br>
+      <strong>맥스밸류 (MaxValu)</strong> — 08:00 ~ 24:00<br>
+      늦은 시간까지 운영하며 가격도 합리적입니다.<br>
       <a href="https://www.google.com/maps/search/MaxValu+Fukuoka+Chuo" target="_blank">지도 보기</a>
     </li>
     <li>
-      <strong>마미즈 슈퍼</strong> – 도진마치 상점가 안<br>
-      매우 저렴한 가격으로 필요한 물품을 구입할 수 있는 지역 슈퍼입니다.<br>
+      <strong>마미즈 (Mammy’s Super)</strong> — 도진마치 상점가 내<br>
+      현지 주민이 많이 찾는 저렴한 마트입니다.<br>
       <a href="https://www.google.com/maps/search/Mammy’s+Supermarket+Tojinmachi+Fukuoka" target="_blank">지도 보기</a>
     </li>
   </ul>
 
-  <h2>주변 관광지</h2>
+  <h2>관광 명소</h2>
   <ul>
-    <li><strong>오호리 공원</strong><br>
-      <a href="https://www.google.com/maps/search/Ohori+Park+Fukuoka" target="_blank">지도 보기</a>
-    </li>
-    <li><strong>니시 공원</strong><br>
-      <a href="https://www.google.com/maps/search/Nishi+Park+Fukuoka" target="_blank">지도 보기</a>
-    </li>
+    <li><strong>오호리 공원</strong> — 산책과 호숫가 여유<br>
+      <a href="https://www.google.com/maps/search/Ohori+Park+Fukuoka" target="_blank">지도 보기</a></li>
+
+    <li><strong>니시 공원</strong> — 전망 좋은 언덕<br>
+      <a href="https://www.google.com/maps/search/Nishi+Park+Fukuoka" target="_blank">지도 보기</a></li>
+
     <li><strong>후쿠오카 타워</strong><br>
-      <a href="https://www.google.com/maps/search/Fukuoka+Tower" target="_blank">지도 보기</a>
-    </li>
-    <li><strong>모모치하마</strong><br>
-      <a href="https://www.google.com/maps/search/Momochi+Beach+Fukuoka" target="_blank">지도 보기</a>
-    </li>
-    <li><strong>페이페이 돔</strong><br>
-      <a href="https://www.google.com/maps/search/PayPay+Dome+Fukuoka" target="_blank">지도 보기</a>
-    </li>
-    <li><strong>아카사카 성터</strong><br>
-      <a href="https://www.google.com/maps/search/Fukuoka+Castle+Ruins" target="_blank">지도 보기</a>
-    </li>
-    <li><strong>후쿠오카시립미술관</strong><br>
-      <a href="https://www.google.com/maps/search/Fukuoka+Art+Museum" target="_blank">지도 보기</a>
-    </li>
+      <a href="https://www.google.com/maps/search/Fukuoka+Tower" target="_blank">지도 보기</a></li>
+
+    <li><strong>모모치 해변</strong><br>
+      <a href="https://www.google.com/maps/search/Momochi+Beach+Fukuoka" target="_blank">지도 보기</a></li>
+
+    <li><strong>PayPay 돔</strong> — 야구 경기장<br>
+      <a href="https://www.google.com/maps/search/PayPay+Dome+Fukuoka" target="_blank">지도 보기</a></li>
+
+    <li><strong>후쿠오카 성터</strong><br>
+      <a href="https://www.google.com/maps/search/Fukuoka+Castle+Ruins" target="_blank">지도 보기</a></li>
+
+    <li><strong>후쿠오카 시립 미술관</strong><br>
+      <a href="https://www.google.com/maps/search/Fukuoka+Art+Museum" target="_blank">지도 보기</a></li>
   </ul>
 
-  <h2>가까운 경찰서</h2>
+  <h2>가까운 파출소</h2>
   <p>
-    코코네하우스에서 오호리공원 방향으로 이동하면<br>
-    <strong>후쿠오카 중앙경찰서</strong>가 가장 가깝습니다.
+    오호리 공원 방향으로 이동하면<br>
+    <strong>후쿠오카 중앙 경찰서</strong>가 가장 가깝습니다.
   </p>
-  <a href="https://www.google.com/maps/search/Fukuoka+Chuo+Police+Station" target="_blank">
-    지도 보기
-  </a>
+  <a href="https://www.google.com/maps/search/Fukuoka+Chuo+Police+Station" target="_blank">지도 보기</a>
+
 </main>
 
-<hr>
-
-<footer>
-  <p>
-    전화: +81-80-5684-0161<br>
-    이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    주소: 후쿠오카현 후쿠오카시 중앙구 쿠로몬 6-4 3F
-  </p>
+<footer style="text-align:center;padding:2rem 0;color:#444;">
+  전화: +81-80-5684-0161<br>
+  이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+  주소: 일본 후쿠오카시 주오구 구로몬 6-4 (3F)
 </footer>
 
 </body>

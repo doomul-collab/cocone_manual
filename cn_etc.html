@@ -1,96 +1,105 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>其他信息 | Cocone House</title>
+  <title>周边信息 | Cocone House</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    header{
+      position: sticky;
+      top: 0;
+      background:white;
+      padding: 1rem 0;
+      z-index:999;
+      border-bottom:1px solid #ddd;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .logo img{height:50px;width:auto;}
+    .langs a{margin:0 0.4rem;}
+  </style>
 </head>
+
 <body>
 
 <header>
-  <a href="cn_index.html">
-    <img src="coconehouse_rogo1.png" alt="Cocone House Logo">
+  <a href="cn_index.html" class="logo">
+    <img src="coconehouse_rogo1.png" alt="Cocone House">
   </a>
 
-  <nav class="lang" aria-label="语言选择" style="display:flex;gap:0.5rem;align-items:center;">
-    <a href="jp_etc.html"><img src="jp_flag.png" style="width:28px;height:auto;border-radius:4px;"><span>日本語</span></a>
-    <a href="en_etc.html"><img src="en_flag.png" style="width:28px;height:auto;border-radius:4px;"><span>English</span></a>
-    <a href="kr_etc.html"><img src="kr_flag.png" style="width:28px;height:auto;border-radius:4px;"><span>한국어</span></a>
-    <a href="cn_etc.html"><img src="cn_flag.png" style="width:28px;height:auto;border-radius:4px;"><span>中文</span></a>
+  <nav class="langs" aria-label="Language selection">
+    <a class="jp lang-btn" href="jp_etc.html">日本語</a>
+    <a class="en lang-btn" href="en_etc.html">English</a>
+    <a class="kr lang-btn" href="kr_etc.html">한국어</a>
+    <a class="cn lang-btn" href="cn_etc.html">中文</a>
   </nav>
 </header>
 
-<hr>
-
 <main>
-  <h1>其他信息</h1>
-  <p>为您介绍 Cocone House 周边的便利店和旅游景点。</p>
+  <h1>周边信息</h1>
+  <p>以下是 Cocone House 附近的便利设施与观光景点。</p>
 
-  <h2>周边便利设施</h2>
+  <h2>便利店 / 超市</h2>
   <ul>
     <li>
-      <strong>Lawson 罗森便利店</strong> – 位于唐人町站前，24小时营业<br>
+      <strong>Lawson</strong> — 地铁唐人町站前（24小时）<br>
       <a href="https://www.google.com/maps/search/Lawson+Tojinmachi+Fukuoka" target="_blank">查看地图</a>
     </li>
     <li>
-      <strong>FamilyMart 全家便利店</strong> – 马路对面，24小时营业<br>
+      <strong>FamilyMart</strong> — 道路对面（24小时）<br>
       <a href="https://www.google.com/maps/search/FamilyMart+Tojinmachi+Fukuoka" target="_blank">查看地图</a>
     </li>
     <li>
-      <strong>MaxValu 超市</strong> – 营业时间 08:00 ~ 24:00<br>
-      可在较晚时间以优惠价格购买食品及日用品。<br>
+      <strong>MaxValu</strong> — 营业时间 08:00–24:00<br>
+      物价亲民，营业至深夜<br>
       <a href="https://www.google.com/maps/search/MaxValu+Fukuoka+Chuo" target="_blank">查看地图</a>
     </li>
     <li>
-      <strong>Mammy’s 超市</strong> – 位于唐人町商店街内<br>
-      便宜实惠的地区型超市，可购买生活必需品。<br>
+      <strong>Mammy’s 超市</strong> — 唐人町商店街内<br>
+      价格实惠，当地人常用超市<br>
       <a href="https://www.google.com/maps/search/Mammy’s+Supermarket+Tojinmachi+Fukuoka" target="_blank">查看地图</a>
     </li>
   </ul>
 
-  <h2>周边旅游景点</h2>
+  <h2>观光景点</h2>
   <ul>
-    <li><strong>大濠公园</strong><br>
-      <a href="https://www.google.com/maps/search/Ohori+Park+Fukuoka" target="_blank">查看地图</a>
-    </li>
-    <li><strong>西公园</strong><br>
-      <a href="https://www.google.com/maps/search/Nishi+Park+Fukuoka" target="_blank">查看地图</a>
-    </li>
-    <li><strong>福冈塔</strong><br>
-      <a href="https://www.google.com/maps/search/Fukuoka+Tower" target="_blank">查看地图</a>
-    </li>
-    <li><strong>百道滨海滩</strong><br>
-      <a href="https://www.google.com/maps/search/Momochi+Beach+Fukuoka" target="_blank">查看地图</a>
-    </li>
-    <li><strong>PayPay 巨蛋（球场）</strong><br>
-      <a href="https://www.google.com/maps/search/PayPay+Dome+Fukuoka" target="_blank">查看地图</a>
-    </li>
-    <li><strong>赤坂城迹</strong><br>
-      <a href="https://www.google.com/maps/search/Fukuoka+Castle+Ruins" target="_blank">查看地图</a>
-    </li>
+    <li><strong>大濠公园（Ohori Park）</strong><br>
+      <a href="https://www.google.com/maps/search/Ohori+Park+Fukuoka" target="_blank">查看地图</a></li>
+
+    <li><strong>西公园（Nishi Park）</strong><br>
+      <a href="https://www.google.com/maps/search/Nishi+Park+Fukuoka" target="_blank">查看地图</a></li>
+
+    <li><strong>福冈塔（Fukuoka Tower）</strong><br>
+      <a href="https://www.google.com/maps/search/Fukuoka+Tower" target="_blank">查看地图</a></li>
+
+    <li><strong>百道海滩（Momochi Beach）</strong><br>
+      <a href="https://www.google.com/maps/search/Momochi+Beach+Fukuoka" target="_blank">查看地图</a></li>
+
+    <li><strong>PayPay Dome 棒球场</strong><br>
+      <a href="https://www.google.com/maps/search/PayPay+Dome+Fukuoka" target="_blank">查看地图</a></li>
+
+    <li><strong>福冈城遗址</strong><br>
+      <a href="https://www.google.com/maps/search/Fukuoka+Castle+Ruins" target="_blank">查看地图</a></li>
+
     <li><strong>福冈市立美术馆</strong><br>
-      <a href="https://www.google.com/maps/search/Fukuoka+Art+Museum" target="_blank">查看地图</a>
-    </li>
+      <a href="https://www.google.com/maps/search/Fukuoka+Art+Museum" target="_blank">查看地图</a></li>
   </ul>
 
-  <h2>最近的警察局</h2>
+  <h2>最近的派出所</h2>
   <p>
-    从 Cocone House 向大濠公园方向步行，<br>
-    <strong>福冈中央警察署</strong> 为最近的警察机关。
+    前往大濠公园方向途中设有<br>
+    <strong>福冈中央警察署（Chuo Police Station）</strong>。
   </p>
-  <a href="https://www.google.com/maps/search/Fukuoka+Chuo+Police+Station" target="_blank">
-    查看地图
-  </a>
+  <a href="https://www.google.com/maps/search/Fukuoka+Chuo+Police+Station" target="_blank">查看地图</a>
+
 </main>
 
-<hr>
-
-<footer>
-  <p>
-    电话: +81-80-5684-0161<br>
-    邮箱: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    地址: 日本 福冈县 福冈市 中央区 黑门 6-4 3F
-  </p>
+<footer style="text-align:center;padding:2rem 0;color:#444;">
+  电话: +81-80-5684-0161<br>
+  邮箱: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+  地址: 日本 福冈市中央区黑门6-4（3F）
 </footer>
 
 </body>
