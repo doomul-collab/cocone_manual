@@ -2,149 +2,100 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>숙박자 명부 조회 | 관리자용</title>
+<title>Guest List Manager | 관리자 페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body{font-family:sans-serif;margin:20px;line-height:1.5;background:#f4f4f4;}
-  h1{text-align:center;}
-  .filter-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  button {
-    padding: 10px 15px;
-    cursor: pointer;
-    border: 1px solid #333;
-    border-radius: 4px;
-    background: #fff;
-    font-weight: bold;
-  }
-  button:hover, button:focus {
-    background: #222;
-    color: #fff;
-  }
-  .table-container {
-    overflow-x: auto;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-  }
-  th {
-    background-color: #eee;
-  }
-  .passport-link {
-    color: #007bff;
-    text-decoration: underline;
-  }
+  body{font-family:sans-serif; margin:0; padding:20px; background:#f4f4f4;}
+  h1{text-align:center; color:#333;}
+  .container{max-width:1000px; margin:auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+  table{width:100%; border-collapse:collapse; margin-top:20px;}
+  th, td{border:1px solid #ddd; padding:12px; text-align:left; font-size:0.9rem;}
+  th{background-color:#007bff; color:white;}
+  tr:nth-child(even){background-color:#f9f9f9;}
+  img{max-width:100px; cursor:pointer; border-radius:4px;}
+  .no-data{text-align:center; padding:50px; color:#888;}
+  .refresh-btn{display:block; width:150px; margin:0 auto 20px; padding:10px; background:#28a745; color:#white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; text-align:center; text-decoration:none; color:white;}
 </style>
 </head>
 <body>
 
-<h1>숙박자 명부 조회 기록</h1>
+<div class="container">
+  <h1>Guest List (명부 조회)</h1>
+  
+  <button class="refresh-btn" onclick="fetchGuests()">Refresh (새로고침)</button>
 
-<nav class="filter-group" aria-label="데이터 조회 기간 선택">
-  <button onclick="fetchData(1)" aria-label="최근 1일 이내 등록된 명부 보기">1일</button>
-  <button onclick="fetchData(7)" aria-label="최근 1주일 이내 등록된 명부 보기">1주일</button>
-  <button onclick="fetchData(30)" aria-label="최근 1개월 이내 등록된 명부 보기">1개월</button>
-  <button onclick="fetchData(365)" aria-label="최근 1년 이내 등록된 명부 보기">1년</button>
-  <button onclick="fetchData(0)" aria-label="전체 등록된 명부 보기">전체</button>
-</nav>
-
-<div class="table-container">
-  <table id="resultTable" aria-describedby="tableSummary">
-    <caption id="tableSummary" style="padding: 10px; font-weight: bold;">
-      숙박객 명부 목록 (최신순)
-    </caption>
-    <thead>
-      <tr>
-        <th scope="col">등록일시</th>
-        <th scope="col">이름</th>
-        <th scope="col">역할</th>
-        <th scope="col">국적</th>
-        <th scope="col">여권번호</th>
-        <th scope="col">연락처</th>
-        <th scope="col">여권사진</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody">
-      </tbody>
-  </table>
+  <div id="guest-table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Nation</th>
+          <th>Passport No.</th>
+          <th>Check-in/Out</th>
+          <th>Passport Image</th>
+        </tr>
+      </thead>
+      <tbody id="guest-list">
+        </tbody>
+    </table>
+  </div>
+  <div id="no-data" class="no-data" style="display:none;">데이터가 없습니다.</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* Supabase 정보 (제공해주신 정보 반영) */
+/* 최신 Supabase 정보 적용 */
 const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-async function fetchData(days) {
-  const tbody = document.getElementById("tableBody");
-  tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>데이터를 불러오는 중입니다...</td></tr>";
-
-  let query = supabaseClient
+async function fetchGuests() {
+  const { data, error } = await supabaseClient
     .from('guests')
     .select('*')
     .order('created_at', { ascending: false });
 
-  // 기간 필터링 로직
-  if (days > 0) {
-    const dateLimit = new Date();
-    dateLimit.setDate(dateLimit.getDate() - days);
-    query = query.gte('created_at', dateLimit.toISOString());
-  }
-
-  const { data, error } = await query;
-
   if (error) {
-    tbody.innerHTML = `<tr><td colspan='7'>에러 발생: ${error.message}</td></tr>`;
+    console.error("Error fetching data:", error);
+    alert("데이터를 불러오지 못했습니다.");
     return;
   }
+
+  const listBody = document.getElementById('guest-list');
+  const noData = document.getElementById('no-data');
+  listBody.innerHTML = '';
 
   if (data.length === 0) {
-    tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>해당 기간의 데이터가 없습니다.</td></tr>";
+    noData.style.display = 'block';
     return;
   }
 
-  tbody.innerHTML = "";
-  data.forEach(item => {
-    const tr = document.createElement("tr");
+  noData.style.display = 'none';
+  data.forEach(guest => {
+    const row = document.createElement('tr');
     
-    // 날짜 포맷팅
-    const regDate = new Date(item.created_at).toLocaleString('ko-KR');
-    const photoLink = item.passport_url 
-      ? `<a href="${item.passport_url}" target="_blank" class="passport-link" aria-label="${item.name}의 여권 사진 보기">보기</a>` 
-      : "없음";
-
-    tr.innerHTML = `
-      <td>${regDate}</td>
-      <td>${item.name}</td>
-      <td>${item.role === 'main' ? '대표' : '동행인'}</td>
-      <td>${item.nationality || '-'}</td>
-      <td>${item.passport_no || '-'}</td>
-      <td>${item.phone_no || '-'}</td>
-      <td>${photoLink}</td>
+    // 날짜 포맷 (YYYY-MM-DD)
+    const date = new Date(guest.created_at).toLocaleDateString();
+    
+    row.innerHTML = `
+      <td>${date}</td>
+      <td><strong>${guest.name}</strong><br>(${guest.role})</td>
+      <td>${guest.nationality || '-'}</td>
+      <td>${guest.passport_no || '-'}</td>
+      <td>${guest.checkin} ~ <br>${guest.checkout}</td>
+      <td>
+        ${guest.passport_url 
+          ? `<a href="${guest.passport_url}" target="_blank"><img src="${guest.passport_url}" alt="Passport"></a>` 
+          : 'No Photo'}
+      </td>
     `;
-    tbody.appendChild(tr);
+    listBody.appendChild(row);
   });
 }
 
-// 페이지 로드 시 전체 데이터 기본 표시
-fetchData(0);
+// 페이지 로드 시 바로 실행
+fetchGuests();
 </script>
-
 </body>
 </html>

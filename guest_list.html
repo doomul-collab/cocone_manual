@@ -1,98 +1,103 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>숙박자 명부 작성 | 코코네하우스</title>
+<title>Guest Registration | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body{font-family:sans-serif;max-width:700px;margin:auto;padding:20px;line-height:1.5;}
+  body{font-family:sans-serif;max-width:700px;margin:auto;padding:20px;line-height:1.5;color:#333;}
   h1{text-align:center;margin-bottom:1rem;}
-  label{display:block;margin-top:12px;font-weight:bold;}
-  input{width:100%;padding:8px;margin-top:4px;border:1px solid #ccc;border-radius:4px;}
-  button{margin-top:20px;padding:12px;width:100%;border:none;border-radius:6px;background:#222;color:#fff;font-size:1rem;cursor:pointer;}
-  .section{margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;}
-  .btn-add{background:#555;}
+  p.desc{text-align:center;color:#666;font-size:0.9rem;margin-bottom:2rem;}
+  label{display:block;margin-top:15px;font-weight:bold;font-size:0.95rem;}
+  input{width:100%;padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
+  button{margin-top:20px;padding:15px;width:100%;border:none;border-radius:6px;background:#222;color:#fff;font-size:1.1rem;cursor:pointer;font-weight:bold;}
+  .section{margin-top:2rem;padding:1.5rem;border:1px solid #eee;border-radius:8px;background-color:#f9f9f9;}
+  .section h2, .section h3 {margin-top:0;color:#007bff;font-size:1.2rem;}
+  .btn-add{background:#6c757d;margin-top:10px;}
+  .btn-submit{background:#007bff;margin-top:30px;}
 </style>
 </head>
 <body>
 
-<h1>숙박자 명부 작성</h1>
-<p style="text-align:center;">
-일본 법령에 따라 체크인 전 반드시 작성해 주시기 바랍니다.
+<h1>Guest Registration</h1>
+<p class="desc">
+  According to Japanese law, all guests are required to provide their information. <br>
+  Please complete this form before checking in.
 </p>
 
 <form id="guestForm">
   <input type="hidden" id="group_id">
 
   <div class="section">
-    <h2>대표 숙박자 정보</h2>
+    <h2>Main Guest</h2>
 
-    <label for="main_name">성함 (Full Name)</label>
-    <input type="text" id="main_name" required>
+    <label for="main_name">Full Name (as shown in passport)</label>
+    <input type="text" id="main_name" placeholder="Enter your full name" required>
 
-    <label for="main_nat">국적 (Nationality)</label>
-    <input type="text" id="main_nat">
+    <label for="main_nat">Nationality</label>
+    <input type="text" id="main_nat" placeholder="e.g. Korea, USA, China">
 
-    <label for="main_passport">여권 번호 (Passport No.)</label>
-    <input type="text" id="main_passport">
+    <label for="main_passport">Passport Number</label>
+    <input type="text" id="main_passport" placeholder="Passport No.">
 
-    <label for="main_job">직업 (Occupation)</label>
-    <input type="text" id="main_job">
+    <label for="main_job">Occupation</label>
+    <input type="text" id="main_job" placeholder="e.g. Student, Office worker">
 
-    <label for="main_phone">전화번호 (Phone)</label>
-    <input type="text" id="main_phone" required>
+    <label for="main_phone">Phone Number</label>
+    <input type="tel" id="main_phone" placeholder="Include country code" required>
 
-    <label for="main_address">주소 (Address)</label>
-    <input type="text" id="main_address" required>
+    <label for="main_address">Home Address</label>
+    <input type="text" id="main_address" placeholder="City, State, Country" required>
 
-    <label for="main_checkin">체크인 날짜</label>
+    <label for="main_checkin">Check-in Date</label>
     <input type="date" id="main_checkin" required>
 
-    <label for="main_checkout">체크아웃 날짜</label>
+    <label for="main_checkout">Check-out Date</label>
     <input type="date" id="main_checkout" required>
 
-    <label for="main_photo">여권 사진 업로드</label>
+    <label for="main_photo">Passport Photo Upload</label>
+    <p style="font-size:0.8rem; color:#d9534f; margin-top:5px;">Please take a clear photo of your passport information page.</p>
     <input type="file" id="main_photo" accept="image/*" capture="environment">
   </div>
 
-  <div id="companions_area">
-    </div>
+  <div id="companions_area"></div>
 
-  <button type="button" class="btn-add" onclick="addCompanion()" aria-label="동행인 정보 입력 칸 추가">
-    + 동행인 추가하기
+  <button type="button" class="btn-add" onclick="addCompanion()">
+    + Add Companion
   </button>
   
-  <button type="button" onclick="sendData()" aria-label="작성한 명부 제출하기" style="background:#007bff;">
-    명부 제출하기
+  <button type="button" class="btn-submit" onclick="sendData()">
+    Submit Registration
   </button>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* Supabase 연결 정보 적용 */
+/* Updated Supabase Connection */
 const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// Set Unique Group ID
 document.getElementById("group_id").value = crypto.randomUUID();
 
 let compCount = 0;
 function addCompanion(){
-  if(compCount >= 3){ alert("최대 3명까지 추가 가능합니다."); return; }
+  if(compCount >= 4){ alert("Maximum 4 companions allowed."); return; }
   compCount++;
 
   const area = document.getElementById("companions_area");
   const div = document.createElement("div");
   div.className = "section";
   div.innerHTML = `
-    <h3>동행인 #${compCount}</h3>
-    <label for="c${compCount}_name">성함</label>
-    <input type="text" id="c${compCount}_name" required>
-    <label for="c${compCount}_job">직업</label>
-    <input type="text" id="c${compCount}_job">
-    <label for="c${compCount}_passport">여권 번호</label>
-    <input type="text" id="c${compCount}_passport">
-    <label for="c${compCount}_photo">여권 사진 (선택)</label>
+    <h3>Companion #${compCount}</h3>
+    <label for="c${compCount}_name">Full Name</label>
+    <input type="text" id="c${compCount}_name" placeholder="Companion's full name" required>
+    <label for="c${compCount}_job">Occupation</label>
+    <input type="text" id="c${compCount}_job" placeholder="e.g. Student">
+    <label for="c${compCount}_passport">Passport Number</label>
+    <input type="text" id="c${compCount}_passport" placeholder="Passport No.">
+    <label for="c${compCount}_photo">Passport Photo (Optional)</label>
     <input type="file" id="c${compCount}_photo" accept="image/*" capture="environment">
   `;
   area.appendChild(div);
@@ -100,13 +105,23 @@ function addCompanion(){
 
 async function uploadImage(file, name){
   if(!file) return null;
-  const path = `passports/${name}_${Date.now()}.jpg`;
-  const { error } = await supabaseClient.storage.from("passports").upload(path, file);
-  if(error) return null;
-  return `${SUPABASE_URL}/storage/v1/object/public/passports/${path}`;
+  // Using bucket "passports"
+  const fileName = `${name.replace(/\s+/g, '_')}_${Date.now()}.jpg`;
+  const { data, error } = await supabaseClient.storage.from("passports").upload(fileName, file);
+  
+  if(error) {
+    console.error("Upload error:", error);
+    return null;
+  }
+  // Construct Public URL
+  return `${SUPABASE_URL}/storage/v1/object/public/passports/${fileName}`;
 }
 
 async function sendData(){
+  const submitBtn = document.querySelector('.btn-submit');
+  submitBtn.disabled = true;
+  submitBtn.innerText = "Processing...";
+
   const gid = document.getElementById("group_id").value;
   const rep = {
     role: "main",
@@ -122,34 +137,18 @@ async function sendData(){
     created_at: new Date().toISOString()
   };
   
+  // Upload Main Guest Photo
   rep.passport_url = await uploadImage(document.getElementById("main_photo").files[0], rep.name);
 
   let guests = [rep];
 
+  // Process Companions
   for(let i=1; i<=compCount; i++){
-    const name = document.getElementById(`c${i}_name`).value;
-    const photo = document.getElementById(`c${i}_photo`).files[0];
-    const url = await uploadImage(photo, name);
+    const cName = document.getElementById(`c${i}_name`).value;
+    const cPhoto = document.getElementById(`c${i}_photo`).files[0];
+    const cUrl = await uploadImage(cPhoto, cName);
 
     guests.push({
       role: "companion",
       group_id: gid,
-      name: name,
-      job: document.getElementById(`c${i}_job`).value,
-      passport_no: document.getElementById(`c${i}_passport`).value,
-      checkin: rep.checkin,
-      checkout: rep.checkout,
-      passport_url: url,
-      created_at: new Date().toISOString()
-    });
-  }
-
-  const { error } = await supabaseClient.from("guests").insert(guests);
-  if(error){ alert("저장 중 오류가 발생했습니다."); console.log(error); return; }
-
-  alert("성공적으로 저장되었습니다.");
-  window.location.href = "kr_checkin.html";
-}
-</script>
-</body>
-</html>
+      name: c
