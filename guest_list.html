@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>숙박자 명부 작성 | 코코네하우스</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:sans-serif;max-width:700px;margin:auto;padding:20px;line-height:1.5;}
+  h1{text-align:center;margin-bottom:1rem;}
+  label{display:block;margin-top:12px;font-weight:bold;}
+  input{width:100%;padding:8px;margin-top:4px;border:1px solid #ccc;border-radius:4px;}
+  button{margin-top:20px;padding:12px;width:100%;border:none;border-radius:6px;background:#222;color:#fff;font-size:1rem;cursor:pointer;}
+  .section{margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;}
+  .btn-add{background:#555;}
+</style>
+</head>
+<body>
+
+<h1>숙박자 명부 작성</h1>
+<p style="text-align:center;">
+일본 법령에 따라 체크인 전 반드시 작성해 주시기 바랍니다.
+</p>
+
+<form id="guestForm">
+  <input type="hidden" id="group_id">
+
+  <div class="section">
+    <h2>대표 숙박자 정보</h2>
+
+    <label for="main_name">성함 (Full Name)</label>
+    <input type="text" id="main_name" required>
+
+    <label for="main_nat">국적 (Nationality)</label>
+    <input type="text" id="main_nat">
+
+    <label for="main_passport">여권 번호 (Passport No.)</label>
+    <input type="text" id="main_passport">
+
+    <label for="main_job">직업 (Occupation)</label>
+    <input type="text" id="main_job">
+
+    <label for="main_phone">전화번호 (Phone)</label>
+    <input type="text" id="main_phone" required>
+
+    <label for="main_address">주소 (Address)</label>
+    <input type="text" id="main_address" required>
+
+    <label for="main_checkin">체크인 날짜</label>
+    <input type="date" id="main_checkin" required>
+
+    <label for="main_checkout">체크아웃 날짜</label>
+    <input type="date" id="main_checkout" required>
+
+    <label for="main_photo">여권 사진 업로드</label>
+    <input type="file" id="main_photo" accept="image/*" capture="environment">
+  </div>
+
+  <div id="companions_area">
+    </div>
+
+  <button type="button" class="btn-add" onclick="addCompanion()" aria-label="동행인 정보 입력 칸 추가">
+    + 동행인 추가하기
+  </button>
+  
+  <button type="button" onclick="sendData()" aria-label="작성한 명부 제출하기" style="background:#007bff;">
+    명부 제출하기
+  </button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* Supabase 연결 정보 적용 */
+const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.getElementById("group_id").value = crypto.randomUUID();
+
+let compCount = 0;
+function addCompanion(){
+  if(compCount >= 3){ alert("최대 3명까지 추가 가능합니다."); return; }
+  compCount++;
+
+  const area = document.getElementById("companions_area");
+  const div = document.createElement("div");
+  div.className = "section";
+  div.innerHTML = `
+    <h3>동행인 #${compCount}</h3>
+    <label for="c${compCount}_name">성함</label>
+    <input type="text" id="c${compCount}_name" required>
+    <label for="c${compCount}_job">직업</label>
+    <input type="text" id="c${compCount}_job">
+    <label for="c${compCount}_passport">여권 번호</label>
+    <input type="text" id="c${compCount}_passport">
+    <label for="c${compCount}_photo">여권 사진 (선택)</label>
+    <input type="file" id="c${compCount}_photo" accept="image/*" capture="environment">
+  `;
+  area.appendChild(div);
+}
+
+async function uploadImage(file, name){
+  if(!file) return null;
+  const path = `passports/${name}_${Date.now()}.jpg`;
+  const { error } = await supabaseClient.storage.from("passports").upload(path, file);
+  if(error) return null;
+  return `${SUPABASE_URL}/storage/v1/object/public/passports/${path}`;
+}
+
+async function sendData(){
+  const gid = document.getElementById("group_id").value;
+  const rep = {
+    role: "main",
+    group_id: gid,
+    name: document.getElementById("main_name").value,
+    nationality: document.getElementById("main_nat").value,
+    passport_no: document.getElementById("main_passport").value,
+    job: document.getElementById("main_job").value,
+    phone_no: document.getElementById("main_phone").value,
+    address: document.getElementById("main_address").value,
+    checkin: document.getElementById("main_checkin").value,
+    checkout: document.getElementById("main_checkout").value,
+    created_at: new Date().toISOString()
+  };
+  
+  rep.passport_url = await uploadImage(document.getElementById("main_photo").files[0], rep.name);
+
+  let guests = [rep];
+
+  for(let i=1; i<=compCount; i++){
+    const name = document.getElementById(`c${i}_name`).value;
+    const photo = document.getElementById(`c${i}_photo`).files[0];
+    const url = await uploadImage(photo, name);
+
+    guests.push({
+      role: "companion",
+      group_id: gid,
+      name: name,
+      job: document.getElementById(`c${i}_job`).value,
+      passport_no: document.getElementById(`c${i}_passport`).value,
+      checkin: rep.checkin,
+      checkout: rep.checkout,
+      passport_url: url,
+      created_at: new Date().toISOString()
+    });
+  }
+
+  const { error } = await supabaseClient.from("guests").insert(guests);
+  if(error){ alert("저장 중 오류가 발생했습니다."); console.log(error); return; }
+
+  alert("성공적으로 저장되었습니다.");
+  window.location.href = "kr_checkin.html";
+}
+</script>
+</body>
+</html>

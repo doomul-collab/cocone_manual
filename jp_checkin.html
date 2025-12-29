@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>チェックイン案内 | ココネハウス</title>
+  <title>チェックインのご案内 | ここねハウス</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -20,62 +20,85 @@
     .logo img{height:50px;width:auto;}
     .langs a{margin:0 0.4rem;}
     .note{color:#b00;font-weight:bold;margin-top:0.3rem;}
+    /* 宿泊者名簿エリアのスタイル */
+    .guest-list-info {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <a href="jp_index.html" class="logo">
-    <img src="coconehouse_rogo1.png" alt="Cocone House">
+    <img src="coconehouse_rogo1.png" alt="ここねハウス ロゴ">
   </a>
 
   <nav class="langs" aria-label="言語選択">
-    <a class="jp lang-btn" href="jp_checkin.html"><span>日本語</span></a>
-    <a class="en lang-btn" href="en_checkin.html"><span>English</span></a>
-    <a class="kr lang-btn" href="kr_checkin.html"><span>한국어</span></a>
-    <a class="cn lang-btn" href="cn_checkin.html"><span>中文</span></a>
+    <a href="jp_checkin.html">日本語</a>
+    <a href="en_checkin.html">English</a>
+    <a href="kr_checkin.html">한국어</a>
+    <a href="cn_checkin.html">中文</a>
   </nav>
 </header>
 
 <main>
-  <h1>チェックイン案内</h1>
+  <h1>チェックインのご案内</h1>
 
-  <p>チェックインは<strong>15:00から</strong>可能です。</p>
+  <p>チェックインは <strong>15:00から</strong> 可能です。</p>
 
-  <h2>セルフチェックインについて</h2>
+  <h2>セルフチェックインのご案内</h2>
 
   <p>
-    ココネハウスではセルフチェックインを導入しています。<br>
-    お部屋番号は、ご宿泊前にホストよりメッセージで個別にお知らせします。
+    ここねハウスは <strong>セルフチェックイン</strong> 方式で運営されています。<br>
+    お部屋番号はチェックイン前に、ホストから個別メッセージでご案内いたします。
   </p>
 
-  <h2>建物への入室方法</h2>
+  <h2>入館方法</h2>
 
-  <p>玄関ドアにはデジタルロックが設置されています。</p>
+  <p>出入口はデジタルドアロックで運営されています。</p>
 
   <ul>
     <li>
-      <strong>Booking.com / Airbnb で予約されたお客様</strong><br>
-      予約時に登録されたパスワードの<strong>下4桁 + 「 * 」キー</strong>を押して解錠してください。<br>
-      <span class="note">※必ず数字の後に「 * 」を押してください。</span>
+      <strong>Booking.com / Airbnbで予約された場合</strong><br>
+      予約時に登録した電話番号の <strong>下4桁 + 星印(*)</strong> を入力して解錠できます。<br>
+      <span class="note">例) 1234* → 必ず数字の後に * を押してください。</span>
     </li>
+
     <li>
-      <strong>その他の予約サイトからのお客様</strong><br>
-      デジタルロックの暗証番号はホストより別途お知らせします。<br>
-      暗証番号入力後に<strong>「 * 」キー</strong>を押して解錠してください。<br>
-      <span class="note">※必ず数字と「 * 」を押して解錠してください。</span>
+      <strong>その他のサイト / 直接予約</strong><br>
+      暗証番号はホストが別途ご案内いたします。<br>
+      暗証番号の入力後、 <strong>必ず * (星印)を押して</strong> 解錠してください。<br>
+      <span class="note">※ 数字と星印(*)を両方押すと解錠されます。</span>
     </li>
   </ul>
 
   <p>
-    トラブルや不明点がございましたら、いつでもホストへご連絡ください。
+    ※ 何か問題がございましたら、いつでもホストにご連絡ください。<br>
+    到着予定時間を事前にお知らせいただけますと、スムーズなチェックインに役立ちます。
   </p>
+
+  <section class="guest-list-info">
+    <h2>宿泊者名簿作成のご案内</h2>
+    <p>
+      日本の旅館業法および住宅宿泊事業法に基づき、<br>
+      必ず宿泊者名簿を作成する必要があります。
+    </p>
+    <p>
+      <a href="guest_list.html" style="font-weight: bold; color: #007bff; text-decoration: underline;">
+        宿泊者名簿を作成する
+      </a>
+    </p>
+  </section>
 </main>
 
 <footer style="text-align:center;padding:2rem 0;color:#444;">
   電話: +81-80-5684-0161<br>
   メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-  住所: 福岡県福岡市中央区黒門6-4 3F
+  住所: 福岡県福岡市中央区黒門6-4 (3F)
 </footer>
 
 </body>

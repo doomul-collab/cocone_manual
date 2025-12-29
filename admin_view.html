@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>숙박자 명부 조회 | 관리자용</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:sans-serif;margin:20px;line-height:1.5;background:#f4f4f4;}
+  h1{text-align:center;}
+  .filter-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #fff;
+    font-weight: bold;
+  }
+  button:hover, button:focus {
+    background: #222;
+    color: #fff;
+  }
+  .table-container {
+    overflow-x: auto;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #eee;
+  }
+  .passport-link {
+    color: #007bff;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<h1>숙박자 명부 조회 기록</h1>
+
+<nav class="filter-group" aria-label="데이터 조회 기간 선택">
+  <button onclick="fetchData(1)" aria-label="최근 1일 이내 등록된 명부 보기">1일</button>
+  <button onclick="fetchData(7)" aria-label="최근 1주일 이내 등록된 명부 보기">1주일</button>
+  <button onclick="fetchData(30)" aria-label="최근 1개월 이내 등록된 명부 보기">1개월</button>
+  <button onclick="fetchData(365)" aria-label="최근 1년 이내 등록된 명부 보기">1년</button>
+  <button onclick="fetchData(0)" aria-label="전체 등록된 명부 보기">전체</button>
+</nav>
+
+<div class="table-container">
+  <table id="resultTable" aria-describedby="tableSummary">
+    <caption id="tableSummary" style="padding: 10px; font-weight: bold;">
+      숙박객 명부 목록 (최신순)
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">등록일시</th>
+        <th scope="col">이름</th>
+        <th scope="col">역할</th>
+        <th scope="col">국적</th>
+        <th scope="col">여권번호</th>
+        <th scope="col">연락처</th>
+        <th scope="col">여권사진</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      </tbody>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* Supabase 정보 (제공해주신 정보 반영) */
+const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function fetchData(days) {
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>데이터를 불러오는 중입니다...</td></tr>";
+
+  let query = supabaseClient
+    .from('guests')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  // 기간 필터링 로직
+  if (days > 0) {
+    const dateLimit = new Date();
+    dateLimit.setDate(dateLimit.getDate() - days);
+    query = query.gte('created_at', dateLimit.toISOString());
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    tbody.innerHTML = `<tr><td colspan='7'>에러 발생: ${error.message}</td></tr>`;
+    return;
+  }
+
+  if (data.length === 0) {
+    tbody.innerHTML = "<tr><td colspan='7' style='text-align:center;'>해당 기간의 데이터가 없습니다.</td></tr>";
+    return;
+  }
+
+  tbody.innerHTML = "";
+  data.forEach(item => {
+    const tr = document.createElement("tr");
+    
+    // 날짜 포맷팅
+    const regDate = new Date(item.created_at).toLocaleString('ko-KR');
+    const photoLink = item.passport_url 
+      ? `<a href="${item.passport_url}" target="_blank" class="passport-link" aria-label="${item.name}의 여권 사진 보기">보기</a>` 
+      : "없음";
+
+    tr.innerHTML = `
+      <td>${regDate}</td>
+      <td>${item.name}</td>
+      <td>${item.role === 'main' ? '대표' : '동행인'}</td>
+      <td>${item.nationality || '-'}</td>
+      <td>${item.passport_no || '-'}</td>
+      <td>${item.phone_no || '-'}</td>
+      <td>${photoLink}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// 페이지 로드 시 전체 데이터 기본 표시
+fetchData(0);
+</script>
+
+</body>
+</html>
