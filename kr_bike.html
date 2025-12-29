@@ -105,23 +105,24 @@ header{
 
 <h2>자전거 이용 동의 폼</h2>
 
-<form action="https://formspree.io/f/xykgvpan" method="POST">
-  <input type="hidden" name="_subject" value="코코네 자전거 이용 신청">
+<form id="bikeForm" onsubmit="sendBikeForm(event)">
+  <input type="hidden" id="subject" name="_subject">
+  <input type="hidden" id="message" name="message">
 
   <label>이름</label>
-  <input type="text" name="이름" required>
+  <input type="text" id="name" required>
 
   <label>객실 번호</label>
-  <input type="text" name="객실번호" required>
+  <input type="text" id="room" required>
 
   <label>이용 예정일</label>
-  <input type="date" name="이용일" required>
+  <input type="date" id="date" required>
 
   <label>전화번호</label>
-  <input type="tel" name="전화번호" required>
+  <input type="tel" id="phone" required>
 
   <label style="margin-top:0.8rem;">
-    <input type="checkbox" name="규칙동의" value="yes" required>
+    <input type="checkbox" id="agree" required>
     규칙을 모두 읽고 동의합니다
   </label>
 
@@ -136,6 +137,34 @@ header{
 메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
 주소: 일본 후쿠오카시 중앙구 구로몬 6-4 3F
 </footer>
+
+<script>
+async function sendBikeForm(e){
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const room = document.getElementById('room').value;
+  const date = document.getElementById('date').value;
+  const phone = document.getElementById('phone').value;
+
+  document.getElementById('subject').value = `[자전거 이용 신청] ${room} / ${name}`;
+  document.getElementById('message').value =
+`이름: ${name}
+객실번호: ${room}
+이용일: ${date}
+전화번호: ${phone}
+규칙동의: 예`;
+
+  const formData = new FormData();
+  formData.append("_subject", document.getElementById("subject").value);
+  formData.append("message", document.getElementById("message").value);
+
+  await fetch("https://formspree.io/f/xykgvpan", { method: "POST", body: formData });
+
+  alert("자전거 이용이 신청되었습니다. 감사합니다.");
+  window.location.reload();
+}
+</script>
 
 </body>
 </html>

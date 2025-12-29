@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bicycle Use Guide & Agreement | Cocone House</title>
+<title>Bicycle Rental Guide & Agreement | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 <style>
@@ -30,7 +30,7 @@ header{
   <a href="en_index.html" class="logo">
     <img src="coconehouse_rogo1.png" alt="Cocone House">
   </a>
-  <nav class="langs" aria-label="Language selection">
+  <nav class="langs" aria-label="language selection">
     <a href="jp_bike.html">日本語</a>
     <a href="en_bike.html">English</a>
     <a href="kr_bike.html">한국어</a>
@@ -42,90 +42,89 @@ header{
 <h1>Bicycle Rental Information</h1>
 <p>
 Cocone House offers <strong>free bicycle rental</strong> for staying guests.<br>
-Please read the information below and proceed <strong>only if you agree to all</strong> conditions.
+Please read the information below and proceed <strong>only if you agree to all terms</strong>.
 </p>
 
-<h2>Storage Location</h2>
+<h2>Location of Bicycles</h2>
 <p>
-Bicycles are kept in the <strong>indoor storage space near the entrance on the 1st floor</strong>.<br>
-Look for the ones with <strong>“cocone”</strong> marked on the rear wheel.
+Bicycles are stored on the <strong>1st floor inside the entrance area</strong>.<br>
+Please use the bicycles marked <strong>"cocone"</strong> on the rear wheel.
 </p>
 
 <h2>Key Storage</h2>
 <p>
-Keys are stored in a lockbox located on the <strong>3rd floor emergency exit balcony</strong>.<br>
+Keys are stored in a lockbox on the <strong>3rd floor, near the emergency exit balcony</strong>.<br>
 The code will be provided <strong>after confirming your agreement</strong>.
 </p>
 
-<h2>Before Use — Check</h2>
+<h2>Before You Ride — Check</h2>
 <ul>
 <li>Brake function</li>
-<li>Tire air pressure</li>
-<li>Saddle height & stability</li>
+<li>Tire pressure</li>
+<li>Saddle height & security</li>
 </ul>
-<p>If air is low, please use the <strong>pump beside the lockbox</strong>.</p>
+<p>If air is low, you may use the <strong>pump beside the lockbox</strong>.</p>
 
-<h2>Rules & Agreement (Important)</h2>
+<h2>Important Rules</h2>
 
 <h3>1. Responsibility</h3>
 <p>
-We cannot be held responsible for any accidents, injuries, damages, or third-party issues<br>
-that occur during use.<br>
-<strong>By starting to use the bicycle, you are considered to have agreed</strong> to these terms.
+We are not responsible for accidents, injuries, damages, or third-party issues<br>
+that may occur during use.<br>
+<strong>Starting to use the bicycle means you agree to these terms.</strong>
 </p>
-<p>Travel/accident insurance is recommended if available.</p>
 
-<h3>2. In Case of Accident or Malfunction</h3>
+<h3>2. If an Accident or Issue Occurs</h3>
 <p>
-Stop riding <strong>immediately</strong> and contact the host.<br>
-If an accident occurs, you must inform <strong>both the police and the host</strong>.
+Please <strong>stop riding immediately</strong> and contact the host.<br>
+If an accident occurs, you must contact <strong>both the police and the host</strong>.
 </p>
 
 <h3>3. Keys & Management</h3>
 <p>
-Please be careful not to lose the key.<br>
-<strong>Lost keys: 2,000 JPY</strong> fee will be charged.
+Please take care not to lose the key.<br>
+<strong>If lost, a fee of 2,000 JPY</strong> will be charged.
 </p>
 
 <h3>4. Prohibited / Caution</h3>
 <ul>
 <li>No use after drinking alcohol</li>
-<li>Follow traffic laws & local regulations</li>
-<li>Ensure proper lighting when riding at night</li>
+<li>Follow traffic laws</li>
+<li>Ensure lighting when riding at night</li>
 <li>No lending or transferring to others</li>
 </ul>
 
 <h3>5. Meaning of Agreement</h3>
 <p>
-Starting usage means you understand all rules and<br>
-<strong>accept to use the bicycle at your own risk</strong>.
+By beginning use, you confirm that you understand the rules and<br>
+<strong>accept full responsibility for your ride</strong>.
 </p>
 
-<h2>Bicycle Rental Agreement Form</h2>
+<h2>Bicycle Rental Request Form</h2>
 
-<form action="https://formspree.io/f/xykgvpan" method="POST">
-  <input type="hidden" name="_subject" value="Cocone Bicycle Rental Request">
-  <input type="hidden" name="_template" value="table">
+<form id="bikeForm" onsubmit="sendBikeForm(event)">
+  <input type="hidden" id="subject" name="_subject">
+  <input type="hidden" id="message" name="message">
 
   <label>Your Name</label>
-  <input type="text" name="Name:" required>
+  <input type="text" id="name" required>
 
   <label>Room Number</label>
-  <input type="text" name="Room Number:" required>
+  <input type="text" id="room" required>
 
   <label>Planned Rental Date</label>
-  <input type="date" name="Rental Date:" required>
+  <input type="date" id="date" required>
 
   <label>Phone Number</label>
-  <input type="tel" name="Phone:" required>
+  <input type="tel" id="phone" required>
 
   <label style="margin-top:0.8rem;">
-    <input type="checkbox" name="Agreement:" value="yes" required>
-    I have read and agree to all rules above
+    <input type="checkbox" id="agree" required>
+    I have read the rules and agree to all of them
   </label>
 
   <p style="text-align:center;margin-top:1.2rem;">
-    <button type="submit">Agree & Submit</button>
+    <button type="submit">Submit Request</button>
   </p>
 </form>
 </main>
@@ -135,6 +134,34 @@ Phone: +81-80-5684-0161<br>
 Email: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
 Address: 6-4 Kuromon, Chuo-ku, Fukuoka, Japan (3F)
 </footer>
+
+<script>
+async function sendBikeForm(e){
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const room = document.getElementById('room').value;
+  const date = document.getElementById('date').value;
+  const phone = document.getElementById('phone').value;
+
+  document.getElementById('subject').value = `[Bicycle Rental Request] ${room} / ${name}`;
+  document.getElementById('message').value =
+`Name: ${name}
+Room: ${room}
+Rental Date: ${date}
+Phone: ${phone}
+Agreement: Yes`;
+
+  const formData = new FormData();
+  formData.append("_subject", document.getElementById("subject").value);
+  formData.append("message", document.getElementById("message").value);
+
+  await fetch("https://formspree.io/f/xykgvpan", { method: "POST", body: formData });
+
+  alert("Your bicycle request has been submitted. Thank you.");
+  window.location.reload();
+}
+</script>
 
 </body>
 </html>

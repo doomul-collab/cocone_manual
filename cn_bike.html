@@ -41,87 +41,86 @@ header{
 <main>
 <h1>自行车租借说明</h1>
 <p>
-Cocone House 为住宿客人提供<strong>免费自行车</strong>。<br>
-请先阅读下列内容，<strong>完全同意后</strong>再使用。
+Cocone House 为住宿客人提供<strong>免费自行车</strong>租借服务。<br>
+请阅读以下说明，仅在<strong>完全同意</strong>的情况下使用。
 </p>
 
 <h2>存放位置</h2>
 <p>
-自行车放置在<strong>一楼玄关内的储放空间</strong>。<br>
-后轮印有 <strong>“cocone”</strong> 的即为租借对象。
+自行车位于<strong>一楼入口内的存放空间</strong>。<br>
+后轮标有 <strong>“cocone”</strong> 字样的即为租借对象。
 </p>
 
-<h2>钥匙位置</h2>
+<h2>钥匙存放位置</h2>
 <p>
 钥匙放在<strong>三楼紧急出口方向的阳台</strong>的密码箱中。<br>
-密码将在<strong>确认同意后单独告知</strong>。
+密码将在<strong>确认同意后</strong>单独提供。
 </p>
 
-<h2>使用前检查</h2>
+<h2>出发前请确认</h2>
 <ul>
 <li>刹车是否正常</li>
 <li>轮胎气压</li>
-<li>座椅高度与固定状况</li>
+<li>座椅高度及固定状况</li>
 </ul>
-<p>如空气不足，请使用钥匙箱旁的<strong>打气筒</strong>。</p>
+<p>如空气不足，可使用密码箱旁的<strong>打气筒</strong>。</p>
 
 <h2>使用规定（重要）</h2>
 
 <h3>1. 责任范围</h3>
 <p>
-使用期间发生的事故、受伤、财物损失以及对第三方造成的损害，<br>
+使用期间发生的事故、伤害、物损及第三方损害，<br>
 <strong>本设施概不负责</strong>。<br>
-开始使用即视为<strong>同意本规定</strong>。
+开始使用即视为<strong>同意上述规定</strong>。
 </p>
-<p>建议投保旅行保险或相关责任险。</p>
 
-<h3>2. 事故／故障发生时</h3>
+<h3>2. 若发生事故或故障</h3>
 <p>
-若出现异常，请<strong>立即停止使用</strong>并联络我们。<br>
-若为事故，请务必通知<strong>警方与房主</strong>。
+请<strong>立即停止使用</strong>并与我们联系。<br>
+若出现事故，必须联系<strong>警察与房主</strong>。
 </p>
 
 <h3>3. 钥匙与管理</h3>
 <p>
 请妥善保管钥匙。<br>
-若遗失钥匙，将收取<strong>2,000日元</strong>作为实际费用。
+<strong>若遗失钥匙，将收取 2,000 日元</strong>作为赔偿。
 </p>
 
-<h3>4. 禁止事项</h3>
+<h3>4. 禁止与注意事项</h3>
 <ul>
-<li>饮酒后禁止使用</li>
+<li>禁止饮酒后骑行</li>
 <li>遵守交通法规</li>
-<li>夜间骑行请确保照明</li>
-<li>禁止转借／转让给他人</li>
+<li>夜间确保照明</li>
+<li>禁止转借或转让</li>
 </ul>
 
 <h3>5. 同意的含义</h3>
 <p>
-开始使用代表您理解以上内容，<br>
-并<strong>愿意自行承担相关责任</strong>。
+开始使用即代表已理解并<br>
+<strong>愿意自行承担责任</strong>。
 </p>
 
-<h2>自行车租借同意表单</h2>
+<h2>自行车租借申请表</h2>
 
-<form action="https://formspree.io/f/xykgvpan" method="POST">
-  <input type="hidden" name="_subject" value="Cocone 自行车租借申请">
-  <input type="hidden" name="_template" value="table">
+<form id="bikeForm" onsubmit="sendBikeForm(event)">
+  <input type="hidden" id="subject" name="_subject">
+  <input type="hidden" id="message" name="message">
 
   <label>姓名</label>
-  <input type="text" name="姓名:" required>
+  <input type="text" id="name" required>
 
   <label>房号</label>
-  <input type="text" name="房号:" required>
+  <input type="text" id="room" required>
 
-  <label>预计使用日期</label>
-  <input type="date" name="使用日期:" required>
+  <label>使用日期</label>
+  <input type="date" id="date" required>
 
-  <label>电话号码</label>
-  <input type="tel" name="电话:" required>
+  <label>电话</label>
+  <input type="tel" id="phone" required>
 
   <label style="margin-top:0.8rem;">
-    <input type="checkbox" name="同意条款:" value="yes" required>
-    我已阅读并同意以上所有条款
+    <input type="checkbox" id="agree" required>
+    我已阅读并同意以上所有使用规定
   </label>
 
   <p style="text-align:center;margin-top:1.2rem;">
@@ -133,8 +132,36 @@ Cocone House 为住宿客人提供<strong>免费自行车</strong>。<br>
 <footer style="text-align:center;padding:2rem 0;color:#444;">
 电话: +81-80-5684-0161<br>
 邮箱: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-地址: 日本福冈市中央区黑门6-4 3F
+地址: 日本 福冈市中央区 黑门6-4 3F
 </footer>
+
+<script>
+async function sendBikeForm(e){
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const room = document.getElementById('room').value;
+  const date = document.getElementById('date').value;
+  const phone = document.getElementById('phone').value;
+
+  document.getElementById('subject').value = `[自行车租借申请] ${room} / ${name}`;
+  document.getElementById('message').value =
+`姓名: ${name}
+房号: ${room}
+使用日期: ${date}
+电话: ${phone}
+同意条款: 是`;
+
+  const formData = new FormData();
+  formData.append("_subject", document.getElementById("subject").value);
+  formData.append("message", document.getElementById("message").value);
+
+  await fetch("https://formspree.io/f/xykgvpan", { method: "POST", body: formData });
+
+  alert("您的申请已提交。谢谢。");
+  window.location.reload();
+}
+</script>
 
 </body>
 </html>
