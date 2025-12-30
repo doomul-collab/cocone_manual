@@ -2,12 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Guest Registration | Cocone House</title>
+<title>Guest List | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   body{font-family:sans-serif;max-width:700px;margin:auto;padding:20px;line-height:1.5;color:#333;}
   h1{text-align:center;margin-bottom:1rem;}
-  p.desc{text-align:center;color:#666;font-size:0.9rem;margin-bottom:2rem;}
+  
+  /* 안내 멘트 스타일: 4줄로 명확히 분리 및 스크린리더 가독성 향상 */
+  .desc-container {
+    text-align: center;
+    background: #f0f7ff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid #d1e7ff;
+  }
+  .desc-line {
+    display: block;
+    margin: 12px 0; /* 문장 사이 간격을 충분히 줌 */
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.4;
+    word-break: keep-all;
+    font-weight: 500;
+  }
+  .desc-line:first-child { margin-top: 0; }
+  .desc-line:last-child { margin-bottom: 0; }
+  
   label{display:block;margin-top:15px;font-weight:bold;font-size:0.95rem;}
   input{width:100%;padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
   button{margin-top:20px;padding:15px;width:100%;border:none;border-radius:6px;background:#222;color:#fff;font-size:1.1rem;cursor:pointer;font-weight:bold;}
@@ -19,11 +40,13 @@
 </head>
 <body>
 
-<h1>Guest Registration</h1>
-<p class="desc">
-  According to Japanese law, all guests are required to provide their information. <br>
-  Please complete this form before checking in.
-</p>
+<h1>Guest List</h1>
+<div class="desc-container">
+  <p class="desc-line">日本の旅館業法および住宅宿泊事業法により、宿泊者名簿を作成する必要があります。</p>
+  <p class="desc-line">According to Japanese law, all guests are required to provide their information.</p>
+  <p class="desc-line">일본 여관법 및 주택숙박사업법에 의하여 숙박자 명부를 작성해야 합니다.</p>
+  <p class="desc-line">根据日本《旅馆业法》和《住宅住宿事业法》，必须填写住宿者登记表。</p>
+</div>
 
 <form id="guestForm">
   <input type="hidden" id="group_id">
@@ -31,7 +54,7 @@
   <div class="section">
     <h2>Main Guest</h2>
 
-    <label for="main_name">Full Name (as shown in passport)</label>
+    <label for="main_name">Full Name</label>
     <input type="text" id="main_name" placeholder="Enter your full name" required>
 
     <label for="main_nat">Nationality</label>
@@ -40,7 +63,7 @@
     <label for="main_passport">Passport Number</label>
     <input type="text" id="main_passport" placeholder="Passport No.">
 
-    <label for="main_job">Occupation</label>
+    <label for="main_job">Job</label>
     <input type="text" id="main_job" placeholder="e.g. Student, Office worker">
 
     <label for="main_phone">Phone Number</label>
@@ -63,37 +86,35 @@
   <div id="companions_area"></div>
 
   <button type="button" class="btn-add" onclick="addCompanion()">
-    + Add Companion
+    Add guest
   </button>
   
   <button type="button" class="btn-submit" onclick="sendData()">
-    Submit Registration
+    Send
   </button>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* Updated Supabase Connection */
 const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// Set Unique Group ID
 document.getElementById("group_id").value = crypto.randomUUID();
 
 let compCount = 0;
 function addCompanion(){
-  if(compCount >= 4){ alert("Maximum 4 companions allowed."); return; }
+  if(compCount >= 4){ alert("Maximum 4 guests allowed."); return; }
   compCount++;
 
   const area = document.getElementById("companions_area");
   const div = document.createElement("div");
   div.className = "section";
   div.innerHTML = `
-    <h3>Companion #${compCount}</h3>
+    <h3>Guest #${compCount + 1}</h3>
     <label for="c${compCount}_name">Full Name</label>
-    <input type="text" id="c${compCount}_name" placeholder="Companion's full name" required>
-    <label for="c${compCount}_job">Occupation</label>
+    <input type="text" id="c${compCount}_name" placeholder="Guest's full name" required>
+    <label for="c${compCount}_job">Job</label>
     <input type="text" id="c${compCount}_job" placeholder="e.g. Student">
     <label for="c${compCount}_passport">Passport Number</label>
     <input type="text" id="c${compCount}_passport" placeholder="Passport No.">
@@ -105,50 +126,5 @@ function addCompanion(){
 
 async function uploadImage(file, name){
   if(!file) return null;
-  // Using bucket "passports"
   const fileName = `${name.replace(/\s+/g, '_')}_${Date.now()}.jpg`;
-  const { data, error } = await supabaseClient.storage.from("passports").upload(fileName, file);
-  
-  if(error) {
-    console.error("Upload error:", error);
-    return null;
-  }
-  // Construct Public URL
-  return `${SUPABASE_URL}/storage/v1/object/public/passports/${fileName}`;
-}
-
-async function sendData(){
-  const submitBtn = document.querySelector('.btn-submit');
-  submitBtn.disabled = true;
-  submitBtn.innerText = "Processing...";
-
-  const gid = document.getElementById("group_id").value;
-  const rep = {
-    role: "main",
-    group_id: gid,
-    name: document.getElementById("main_name").value,
-    nationality: document.getElementById("main_nat").value,
-    passport_no: document.getElementById("main_passport").value,
-    job: document.getElementById("main_job").value,
-    phone_no: document.getElementById("main_phone").value,
-    address: document.getElementById("main_address").value,
-    checkin: document.getElementById("main_checkin").value,
-    checkout: document.getElementById("main_checkout").value,
-    created_at: new Date().toISOString()
-  };
-  
-  // Upload Main Guest Photo
-  rep.passport_url = await uploadImage(document.getElementById("main_photo").files[0], rep.name);
-
-  let guests = [rep];
-
-  // Process Companions
-  for(let i=1; i<=compCount; i++){
-    const cName = document.getElementById(`c${i}_name`).value;
-    const cPhoto = document.getElementById(`c${i}_photo`).files[0];
-    const cUrl = await uploadImage(cPhoto, cName);
-
-    guests.push({
-      role: "companion",
-      group_id: gid,
-      name: c
+  const {

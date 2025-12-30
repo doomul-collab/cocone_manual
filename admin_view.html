@@ -1,101 +1,152 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Guest List Manager | 관리자 페이지</title>
+<title>宿泊者名簿管理 | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body{font-family:sans-serif; margin:0; padding:20px; background:#f4f4f4;}
-  h1{text-align:center; color:#333;}
-  .container{max-width:1000px; margin:auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-  table{width:100%; border-collapse:collapse; margin-top:20px;}
-  th, td{border:1px solid #ddd; padding:12px; text-align:left; font-size:0.9rem;}
-  th{background-color:#007bff; color:white;}
-  tr:nth-child(even){background-color:#f9f9f9;}
-  img{max-width:100px; cursor:pointer; border-radius:4px;}
-  .no-data{text-align:center; padding:50px; color:#888;}
-  .refresh-btn{display:block; width:150px; margin:0 auto 20px; padding:10px; background:#28a745; color:#white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; text-align:center; text-decoration:none; color:white;}
+  body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; margin: 20px; background: #f4f7f6; }
+  h1 { color: #333; font-size: 1.5rem; border-left: 5px solid #007bff; padding-left: 15px; }
+  .controls { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+  .filter-group { margin-bottom: 10px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  button { padding: 10px 15px; border: none; border-radius: 4px; background: #007bff; color: white; cursor: pointer; font-weight: bold; }
+  button:hover { background: #0056b3; }
+  button.secondary { background: #6c757d; }
+  input[type="date"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; margin-top: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  th, td { border: 1px solid #ddd; padding: 12px; text-align: left; font-size: 0.85rem; }
+  th { background-color: #f8f9fa; color: #333; white-space: nowrap; }
+  tr:nth-child(even) { background-color: #f9f9f9; }
+  .passport-img { width: 80px; height: auto; cursor: pointer; border-radius: 4px; border: 1px solid #ddd; }
+  .role-main { color: #d9534f; font-weight: bold; background: #fff5f5; padding: 2px 5px; border-radius: 3px; }
+  .role-comp { color: #5bc0de; background: #f0faff; padding: 2px 5px; border-radius: 3px; }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Guest List (명부 조회)</h1>
-  
-  <button class="refresh-btn" onclick="fetchGuests()">Refresh (새로고침)</button>
+<h1>宿泊者名簿管理システム</h1>
 
-  <div id="guest-table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Name</th>
-          <th>Nation</th>
-          <th>Passport No.</th>
-          <th>Check-in/Out</th>
-          <th>Passport Image</th>
-        </tr>
-      </thead>
-      <tbody id="guest-list">
-        </tbody>
-    </table>
+<div class="controls">
+  <div class="filter-group">
+    <button onclick="setPeriod(7)">過去1週間</button>
+    <button onclick="setPeriod(30)">過去1ヶ月</button>
+    <button onclick="setPeriod(365)">過去1年</button>
+    <button class="secondary" onclick="fetchAll()">すべて表示</button>
   </div>
-  <div id="no-data" class="no-data" style="display:none;">데이터가 없습니다.</div>
+  <div class="filter-group">
+    <label>期間指定: </label>
+    <input type="date" id="startDate"> ～ <input type="date" id="endDate">
+    <button onclick="fetchDataByRange()">検索</button>
+  </div>
 </div>
+
+<table id="guestTable">
+  <thead>
+    <tr>
+      <th>登録日時</th>
+      <th>区分</th>
+      <th>氏名</th>
+      <th>国籍</th>
+      <th>旅券番号</th>
+      <th>宿泊期間</th>
+      <th>パスポート写し</th>
+    </tr>
+  </thead>
+  <tbody>
+    </tbody>
+</table>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* 최신 Supabase 정보 적용 */
+// 사용자님의 Supabase 접속 정보 유지
 const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-async function fetchGuests() {
+// 버튼 클릭 시 날짜 설정
+function setPeriod(days) {
+  const end = new Date();
+  const start = new Date();
+  start.setDate(end.getDate() - days);
+  
+  document.getElementById('startDate').value = start.toISOString().split('T')[0];
+  document.getElementById('endDate').value = end.toISOString().split('T')[0];
+  fetchDataByRange();
+}
+
+// 전체 데이터 조회
+async function fetchAll() {
+  document.getElementById('startDate').value = '';
+  document.getElementById('endDate').value = '';
   const { data, error } = await supabaseClient
     .from('guests')
     .select('*')
     .order('created_at', { ascending: false });
+  
+  if (error) {
+    alert("データの取得中にエラーが発生しました: " + error.message);
+  } else {
+    renderTable(data);
+  }
+}
+
+// 기간 검색 조회
+async function fetchDataByRange() {
+  const start = document.getElementById('startDate').value;
+  const end = document.getElementById('endDate').value;
+  
+  if(!start || !end) {
+    alert("開始日と終了日を正しく選択してください。");
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from('guests')
+    .select('*')
+    .gte('created_at', `${start}T00:00:00`)
+    .lte('created_at', `${end}T23:59:59`)
+    .order('created_at', { ascending: false });
 
   if (error) {
-    console.error("Error fetching data:", error);
-    alert("데이터를 불러오지 못했습니다.");
+    alert("検索中にエラーが発生しました: " + error.message);
+  } else {
+    renderTable(data);
+  }
+}
+
+// 테이블 렌더링
+function renderTable(data) {
+  const tbody = document.querySelector('#guestTable tbody');
+  tbody.innerHTML = '';
+  
+  if (!data || data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">該当するデータがありません。</td></tr>';
     return;
   }
 
-  const listBody = document.getElementById('guest-list');
-  const noData = document.getElementById('no-data');
-  listBody.innerHTML = '';
-
-  if (data.length === 0) {
-    noData.style.display = 'block';
-    return;
-  }
-
-  noData.style.display = 'none';
   data.forEach(guest => {
     const row = document.createElement('tr');
-    
-    // 날짜 포맷 (YYYY-MM-DD)
-    const date = new Date(guest.created_at).toLocaleDateString();
+    // 일본 날짜 형식으로 변환
+    const date = new Date(guest.created_at).toLocaleString('ja-JP');
+    const roleText = guest.role === 'main' ? '<span class="role-main">代表者</span>' : '<span class="role-comp">同伴者</span>';
     
     row.innerHTML = `
       <td>${date}</td>
-      <td><strong>${guest.name}</strong><br>(${guest.role})</td>
+      <td>${roleText}</td>
+      <td><strong>${guest.name}</strong></td>
       <td>${guest.nationality || '-'}</td>
       <td>${guest.passport_no || '-'}</td>
-      <td>${guest.checkin} ~ <br>${guest.checkout}</td>
+      <td>${guest.checkin} ～ ${guest.checkout}</td>
       <td>
-        ${guest.passport_url 
-          ? `<a href="${guest.passport_url}" target="_blank"><img src="${guest.passport_url}" alt="Passport"></a>` 
-          : 'No Photo'}
+        ${guest.passport_url ? `<img src="${guest.passport_url}" class="passport-img" onclick="window.open(this.src)" title="クリックして拡大">` : '画像なし'}
       </td>
     `;
-    listBody.appendChild(row);
+    tbody.appendChild(row);
   });
 }
 
-// 페이지 로드 시 바로 실행
-fetchGuests();
+// 초기 로딩 시 실행
+fetchAll();
 </script>
 </body>
 </html>
