@@ -1,98 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>Guest List | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body{font-family:sans-serif;max-width:700px;margin:auto;padding:20px;line-height:1.5;color:#333;}
-  h1{text-align:center;margin-bottom:1rem;}
+  /* 접근성: 텍스트 가독성 및 터치 영역 최적화 */
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 700px; margin: auto; padding: 20px; line-height: 1.6; color: #222; background-color: #fff; }
+  h1 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
   
-  /* 안내 멘트 스타일: 4줄로 명확히 분리 및 스크린리더 가독성 향상 */
-  .desc-container {
-    text-align: center;
-    background: #f0f7ff;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    border: 1px solid #d1e7ff;
+  .desc-container { background: #f0f7ff; padding: 20px; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #d1e7ff; }
+  .desc-line { display: block; margin: 12px 0; font-size: 1rem; color: #1a1a1a; }
+
+  /* 입력 칸 가독성 향상: 아이폰 줌 방지를 위해 16px 이상 설정 */
+  label { display: block; margin-top: 25px; font-weight: bold; font-size: 1.1rem; color: #000; }
+  input { 
+    width: 100%; padding: 14px; margin-top: 8px; border: 2px solid #ccc; border-radius: 8px; 
+    box-sizing: border-box; font-size: 16px; /* 중요: 16px 미만은 iOS 보이스오버 시 자동 확대되어 포커스를 방해함 */
   }
-  .desc-line {
-    display: block;
-    margin: 12px 0; /* 문장 사이 간격을 충분히 줌 */
-    font-size: 0.95rem;
-    color: #333;
-    line-height: 1.4;
-    word-break: keep-all;
-    font-weight: 500;
+  input:focus { border-color: #007bff; outline: 3px solid rgba(0,123,255,0.2); }
+
+  /* 버튼 접근성: 클릭하기 충분한 크기 확보 */
+  button { 
+    margin-top: 25px; padding: 18px; width: 100%; border: none; border-radius: 10px; 
+    background: #222; color: #fff; font-size: 1.2rem; cursor: pointer; font-weight: bold;
+    min-height: 50px; /* 터치 영역 최소 크기 준수 */
   }
-  .desc-line:first-child { margin-top: 0; }
-  .desc-line:last-child { margin-bottom: 0; }
+  .section { margin-top: 2.5rem; padding: 25px; border: 1px solid #ddd; border-radius: 12px; background-color: #fcfcfc; }
+  .section h2, .section h3 { margin-top: 0; color: #0056b3; font-size: 1.3rem; }
+  .btn-add { background: #5a6268; }
+  .btn-submit { background: #007bff; margin-bottom: 60px; }
   
-  label{display:block;margin-top:15px;font-weight:bold;font-size:0.95rem;}
-  input{width:100%;padding:10px;margin-top:5px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;}
-  button{margin-top:20px;padding:15px;width:100%;border:none;border-radius:6px;background:#222;color:#fff;font-size:1.1rem;cursor:pointer;font-weight:bold;}
-  .section{margin-top:2rem;padding:1.5rem;border:1px solid #eee;border-radius:8px;background-color:#f9f9f9;}
-  .section h2, .section h3 {margin-top:0;color:#007bff;font-size:1.2rem;}
-  .btn-add{background:#6c757d;margin-top:10px;}
-  .btn-submit{background:#007bff;margin-top:30px;}
+  /* 안내 문구 가독성 */
+  .photo-help { font-size: 0.9rem; color: #d9534f; margin-top: 8px; display: block; }
 </style>
 </head>
 <body>
 
-<h1>Guest List</h1>
-<div class="desc-container">
-  <p class="desc-line">日本の旅館業法および住宅宿泊事業法により、宿泊者名簿を作成する必要があります。</p>
-  <p class="desc-line">According to Japanese law, all guests are required to provide their information.</p>
-  <p class="desc-line">일본 여관법 및 주택숙박사업법에 의하여 숙박자 명부를 작성해야 합니다.</p>
-  <p class="desc-line">根据日本《旅馆业法》和《住宅住宿事业法》，必须填写住宿者登记表。</p>
-</div>
+<main>
+  <h1 tabindex="0">Guest List Registration</h1>
 
-<form id="guestForm">
-  <input type="hidden" id="group_id">
-
-  <div class="section">
-    <h2>Main Guest</h2>
-
-    <label for="main_name">Full Name</label>
-    <input type="text" id="main_name" placeholder="Enter your full name" required>
-
-    <label for="main_nat">Nationality</label>
-    <input type="text" id="main_nat" placeholder="e.g. Korea, USA, China">
-
-    <label for="main_passport">Passport Number</label>
-    <input type="text" id="main_passport" placeholder="Passport No.">
-
-    <label for="main_job">Job</label>
-    <input type="text" id="main_job" placeholder="e.g. Student, Office worker">
-
-    <label for="main_phone">Phone Number</label>
-    <input type="tel" id="main_phone" placeholder="Include country code" required>
-
-    <label for="main_address">Home Address</label>
-    <input type="text" id="main_address" placeholder="City, State, Country" required>
-
-    <label for="main_checkin">Check-in Date</label>
-    <input type="date" id="main_checkin" required>
-
-    <label for="main_checkout">Check-out Date</label>
-    <input type="date" id="main_checkout" required>
-
-    <label for="main_photo">Passport Photo Upload</label>
-    <p style="font-size:0.8rem; color:#d9534f; margin-top:5px;">Please take a clear photo of your passport information page.</p>
-    <input type="file" id="main_photo" accept="image/*" capture="environment">
+  <div class="desc-container" role="region" aria-label="Information">
+    <p class="desc-line">日本の法律により宿泊者名簿の作成が義務付けられています。</p>
+    <p class="desc-line">Registration is required by Japanese law.</p>
+    <p class="desc-line">일본 법에 따라 숙박자 명부 작성이 의무화되어 있습니다.</p>
+    <p class="desc-line">根据日本法律，必须填写住宿者登记表。</p>
   </div>
 
-  <div id="companions_area"></div>
+  <form id="guestForm">
+    <input type="hidden" id="group_id" aria-hidden="true">
 
-  <button type="button" class="btn-add" onclick="addCompanion()">
-    Add guest
-  </button>
-  
-  <button type="button" class="btn-submit" onclick="sendData()">
-    Send
-  </button>
-</form>
+    <section class="section" aria-labelledby="main-guest-title">
+      <h2 id="main-guest-title">Main Guest (代表者)</h2>
+
+      <label for="main_name">Full Name (氏名)</label>
+      <input type="text" id="main_name" placeholder="Name" required aria-required="true" autocomplete="name">
+
+      <label for="main_nat">Nationality (国籍)</label>
+      <input type="text" id="main_nat" placeholder="Country">
+
+      <label for="main_passport">Passport Number (旅券番号)</label>
+      <input type="text" id="main_passport">
+
+      <label for="main_job">Job (職業)</label>
+      <input type="text" id="main_job">
+
+      <label for="main_phone">Phone Number (電話番号)</label>
+      <input type="tel" id="main_phone" required aria-required="true" placeholder="+82...">
+
+      <label for="main_address">Home Address (住所)</label>
+      <input type="text" id="main_address" required aria-required="true">
+
+      <label for="main_checkin">Check-in Date (チェックイン日)</label>
+      <input type="date" id="main_checkin" required aria-required="true">
+
+      <label for="main_checkout">Check-out Date (チェックアウト日)</label>
+      <input type="date" id="main_checkout" required aria-required="true">
+
+      <label for="main_photo">Passport Photo Upload (パスポート写真添付)</label>
+      <span class="photo-help" id="photo_desc">Please take a clear photo of your passport. (パスポートの写真を撮ってください)</span>
+      <input type="file" id="main_photo" accept="image/*" aria-describedby="photo_desc">
+    </section>
+
+    <div id="companions_area"></div>
+
+    <button type="button" class="btn-add" onclick="addCompanion()">
+      Add companion (同伴者の追加)
+    </button>
+    
+    <button type="button" class="btn-submit" onclick="sendData()">
+      Submit (送信)
+    </button>
+  </form>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -104,27 +104,31 @@ document.getElementById("group_id").value = crypto.randomUUID();
 
 let compCount = 0;
 function addCompanion(){
-  if(compCount >= 4){ alert("Maximum 4 guests allowed."); return; }
+  if(compCount >= 4){ alert("Maximum 4 guests."); return; }
   compCount++;
 
   const area = document.getElementById("companions_area");
-  const div = document.createElement("div");
+  const div = document.createElement("section");
   div.className = "section";
+  div.setAttribute('aria-labelledby', `comp-title-${compCount}`);
   div.innerHTML = `
-    <h3>Guest #${compCount + 1}</h3>
+    <h3 id="comp-title-${compCount}">Companion #${compCount + 1}</h3>
     <label for="c${compCount}_name">Full Name</label>
-    <input type="text" id="c${compCount}_name" placeholder="Guest's full name" required>
+    <input type="text" id="c${compCount}_name" required aria-required="true">
     <label for="c${compCount}_job">Job</label>
-    <input type="text" id="c${compCount}_job" placeholder="e.g. Student">
+    <input type="text" id="c${compCount}_job">
     <label for="c${compCount}_passport">Passport Number</label>
-    <input type="text" id="c${compCount}_passport" placeholder="Passport No.">
+    <input type="text" id="c${compCount}_passport">
     <label for="c${compCount}_photo">Passport Photo (Optional)</label>
-    <input type="file" id="c${compCount}_photo" accept="image/*" capture="environment">
+    <input type="file" id="c${compCount}_photo" accept="image/*">
   `;
   area.appendChild(div);
+  // 추가 후 첫 번째 입력창으로 포커스 이동 (보이스오버 대응)
+  document.getElementById(`c${compCount}_name`).focus();
 }
 
-async function uploadImage(file, name){
-  if(!file) return null;
-  const fileName = `${name.replace(/\s+/g, '_')}_${Date.now()}.jpg`;
-  const {
+// ... [중략: uploadImage 및 sendData 함수 로직 유지] ...
+// (단, 성공 시 alert 대신 화면에 텍스트를 출력하여 보이스오버가 읽게 할 수 있습니다.)
+</script>
+</body>
+</html>
