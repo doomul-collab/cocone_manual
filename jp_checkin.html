@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>チェックインのご案内 | ここねハウス</title>
+  <title>チェックインのご案内 | cocone house</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -20,13 +20,35 @@
     .logo img{height:50px;width:auto;}
     .langs a{margin:0 0.4rem;}
     .note{color:#b00;font-weight:bold;margin-top:0.3rem;}
-    /* 宿泊者名簿エリアのスタイル */
-    .guest-list-info {
-      margin-top: 2rem;
-      padding: 1rem;
-      background-color: #f9f9f9;
-      border: 1px solid #eee;
-      border-radius: 8px;
+
+    /* 宿泊者名簿バナーのスタイル */
+    .guest-list-banner {
+      margin: 2.5rem 0;
+      padding: 1.5rem;
+      background-color: #f0f7ff; /* 薄い青色の背景 */
+      border: 2px solid #007bff; /* 青色の枠線 */
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,123,255,0.1);
+    }
+    .guest-list-banner h2 {
+      margin-top: 0;
+      color: #0056b3;
+      font-size: 1.4rem;
+    }
+    .tally-link-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 10px 25px;
+      background-color: #007bff;
+      color: white !important;
+      text-decoration: none !important;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .tally-link-button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
@@ -34,7 +56,7 @@
 
 <header>
   <a href="jp_index.html" class="logo">
-    <img src="coconehouse_rogo1.png" alt="ここねハウス ロゴ">
+    <img src="coconehouse_rogo1.png" alt="cocone house ロゴ">
   </a>
 
   <nav class="langs" aria-label="言語選択">
@@ -53,52 +75,50 @@
   <h2>セルフチェックインのご案内</h2>
 
   <p>
-    ここねハウスは <strong>セルフチェックイン</strong> 方式で運営されています。<br>
-    お部屋番号はチェックイン前に、ホストから個別メッセージでご案内いたします。
+    cocone houseは <strong>セルフチェックイン</strong> 方式で運営しております。<br>
+    お部屋番号はチェックイン前に、ホストから個別メッセージにてご案内いたします。
   </p>
 
-  <h2>入館方法</h2>
+  <h2>入室方法</h2>
 
-  <p>出入口はデジタルドアロックで運営されています。</p>
+  <p>出入口はデジタルドアロックを使用しております。</p>
 
   <ul>
     <li>
-      <strong>Booking.com / Airbnbで予約された場合</strong><br>
-      予約時に登録した電話番号の <strong>下4桁 + 星印(*)</strong> を入力して解錠できます。<br>
+      <strong>Booking.com / Airbnbでご予約の場合</strong><br>
+      予約時に登録した電話番号の <strong>下4桁 + 星印(*)</strong> を入力して解錠してください。<br>
       <span class="note">例) 1234* → 必ず数字の後に * を押してください。</span>
     </li>
 
     <li>
-      <strong>その他のサイト / 直接予約</strong><br>
+      <strong>その他のサイト / 直接予約の場合</strong><br>
       暗証番号はホストが別途ご案内いたします。<br>
       暗証番号の入力後、 <strong>必ず * (星印)を押して</strong> 解錠してください。<br>
-      <span class="note">※ 数字と星印(*)を両方押すと解錠されます。</span>
+      <span class="note">※数字と星印(*)を両方入力しないと解錠されません。</span>
     </li>
   </ul>
 
   <p>
-    ※ 何か問題がございましたら、いつでもホストにご連絡ください。<br>
-    到着予定時間を事前にお知らせいただけますと、スムーズなチェックインに役立ちます。
+    ※ 問題が発生した場合は、いつでもホストにご連絡ください。<br>
+    到着予定時刻を事前にお知らせいただけますと、スムーズなチェックインが可能です。
   </p>
 
-  <section class="guest-list-info">
-    <h2>宿泊者名簿作成のご案内</h2>
+  <section class="guest-list-banner">
+    <h2>✍️ 宿泊者名簿作成のご案内</h2>
     <p>
-      日本の旅館業法および住宅宿泊事業法に基づき、<br>
-      必ず宿泊者名簿を作成する必要があります。
+      日本の法令（旅館業法および住宅宿泊事業法）に基づき、<br>
+      <strong>すべてのご宿泊者様は宿泊者名簿を作成</strong>する必要があります。
     </p>
-    <p>
-      <a href="guest_list.html" style="font-weight: bold; color: #007bff; text-decoration: underline;">
-        宿泊者名簿を作成する
-      </a>
-    </p>
+    <a href="https://tally.so/r/81aNvo" class="tally-link-button">
+      宿泊者名簿を作成する
+    </a>
   </section>
 </main>
 
 <footer style="text-align:center;padding:2rem 0;color:#444;">
   電話: +81-80-5684-0161<br>
   メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-  住所: 福岡県福岡市中央区黒門6-4 (3F)
+  住所: 福岡県福岡市中央区黒門 6-4 (3F)
 </footer>
 
 </body>

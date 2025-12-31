@@ -2,16 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Check-out Instructions | Cocone House</title>
+  <title>Check-out Guide | cocone house</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
     header{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;}
     header img.logo{max-width:140px;height:auto;}
-    nav.lang{display:flex;gap:0.75rem;align-items:center;}
-    nav.lang a{font-size:0.9rem;color:#000;text-decoration:none;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang img{width:28px;height:auto;border-radius:4px;}
+    
+    /* Guest List Notice Section */
+    .guest-list-notice {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: #fff9db; /* Light yellow background */
+      border: 1px solid #fab005;
+      border-radius: 8px;
+    }
+    .guest-list-notice h2 {
+      margin-top: 0;
+      color: #e67700;
+      font-size: 1.2rem;
+    }
+    .tally-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #228be6;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
     @media (min-width:600px){
       body{max-width:700px;margin:auto;}
+      nav.lang img{width:32px;}
+      nav.lang a{font-size:0.8rem;}
       header img.logo{max-width:160px;}
     }
   </style>
@@ -20,56 +45,65 @@
 
 <header>
   <a href="en_index.html">
-    <img src="coconehouse_rogo1.png" alt="Cocone House Logo" class="logo">
+    <img src="coconehouse_rogo1.png" alt="cocone house logo" class="logo">
   </a>
 
   <nav class="lang" aria-label="Language selection">
-    <a href="jp_checkout.html">日本語</a>
-    <a href="en_checkout.html">English</a>
-    <a href="kr_checkout.html">한국어</a>
-    <a href="cn_checkout.html">中文</a>
+    <a href="jp_checkout.html" aria-label="日本語">
+      <img src="jp_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">日本語</span>
+    </a>
+    <a href="en_checkout.html" aria-label="English">
+      <img src="en_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">English</span>
+    </a>
+    <a href="kr_checkout.html" aria-label="한국어">
+      <img src="kr_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">한국어</span>
+    </a>
+    <a href="cn_checkout.html" aria-label="中文">
+      <img src="cn_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">中文</span>
+    </a>
   </nav>
 </header>
 
 <hr>
 
 <main>
-  <h1>Check-out Instructions</h1>
+  <h1>Check-out Guide</h1>
 
-  <p>Check-out time is <strong>by 10:00 AM</strong>.</p>
+  <p>Check-out time is until <strong>10:00 AM</strong>.</p>
 
   <h2>Accommodation Tax</h2>
-  <p>Please place the accommodation tax in the <strong>envelope provided in your room</strong> before you leave.</p>
+  <p>Upon check-out, please put the accommodation tax in the <strong>envelope</strong> provided in your room.</p>
 
   <ul>
-    <li>Accommodation tax: <strong>200 JPY per adult / per night</strong></li>
-    <li>Children (12 and under): <strong>No charge</strong></li>
+    <li>Tax: <strong>200 JPY per adult per night</strong></li>
+    <li>Children (12 and under): <strong>Free</strong></li>
   </ul>
 
   <p>
-    Example:<br>
-    2 adults × 3 nights × 200 JPY = <strong>1,200 JPY</strong>
+    Example)<br>
+    2 adults staying for 3 nights:<br>
+    2 persons × 3 nights × 200 JPY = <strong>1,200 JPY</strong>
   </p>
 
-  <h2>Let Us Know Your Check-out Time</h2>
-  <p>To ensure a smooth room turnover, please send a message to the host with your expected check-out time.</p>
+  <section class="guest-list-notice">
+    <h2>Guest Registration</h2>
+    <p>If you haven't completed the guest registration yet, please make sure to fill it out before you leave.</p>
+    <a href="https://tally.so/r/81aNvo" class="tally-link">
+      👉 Click here to complete Guest Registration
+    </a>
+  </section>
 
-  <h2>Before Leaving</h2>
-  <ul>
-    <li>Turn off all lights and the air conditioner.</li>
-    <li>Check that you have all your belongings.</li>
-    <li>Please close the door securely behind you.</li>
-  </ul>
-
+  <h2>Estimated Check-out Time</h2>
+  <p>To help us coordinate cleaning, please inform the host of your estimated check-out time in advance. Thank you!</p>
 </main>
 
 <hr>
 
 <footer>
-  <p style="text-align:center;padding:2rem 0;color:#444;">
-    Tel: +81-80-5684-0161<br>
+  <p>
+    Phone: +81-80-5684-0161<br>
     Email: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    Address: 6-4 Kuromon, Chuo-ku, Fukuoka City, Fukuoka, 3F
+    Address: 3F, 6-4 Kuromon, Chuo-ku, Fukuoka-shi, Fukuoka-ken
   </p>
 </footer>
 

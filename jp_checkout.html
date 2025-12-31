@@ -2,69 +2,109 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>チェックアウト案内 | ココネハウス</title>
+  <title>チェックアウトのご案内 | cocone house</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
   <style>
-    header{
-      position: sticky;
-      top: 0;
-      background:white;
-      padding: 1rem 0;
-      z-index: 999;
-      border-bottom:1px solid #ddd;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;}
+    header img.logo{max-width:140px;height:auto;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang img{width:28px;height:auto;border-radius:4px;}
+    
+    /* 追加スタイル：宿泊者名簿の案内エリア */
+    .guest-list-notice {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: #fff9db; /* 注意を引くための薄い黄色 */
+      border: 1px solid #fab005;
+      border-radius: 8px;
     }
-    .logo img{height:50px;width:auto;}
-    .langs a{margin:0 0.4rem;}
+    .guest-list-notice h2 {
+      margin-top: 0;
+      color: #e67700;
+      font-size: 1.2rem;
+    }
+    .tally-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #228be6;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    @media (min-width:600px){
+      body{max-width:700px;margin:auto;}
+      nav.lang img{width:32px;}
+      nav.lang a{font-size:0.8rem;}
+      header img.logo{max-width:160px;}
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <a href="jp_index.html" class="logo">
-    <img src="coconehouse_rogo1.png" alt="Cocone House">
+  <a href="jp_index.html">
+    <img src="coconehouse_rogo1.png" alt="cocone house ロゴ" class="logo">
   </a>
-  <nav class="langs" aria-label="言語選択">
-    <a class="jp lang-btn" href="jp_checkout.html"><span>日本語</span></a>
-    <a class="en lang-btn" href="en_checkout.html"><span>English</span></a>
-    <a class="kr lang-btn" href="kr_checkout.html"><span>한국어</span></a>
-    <a class="cn lang-btn" href="cn_checkout.html"><span>中文</span></a>
+
+  <nav class="lang" aria-label="言語選択">
+    <a href="jp_checkout.html" aria-label="日本語">
+      <img src="jp_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">日本語</span>
+    </a>
+    <a href="en_checkout.html" aria-label="English">
+      <img src="en_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">English</span>
+    </a>
+    <a href="kr_checkout.html" aria-label="한국어">
+      <img src="kr_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">한국어</span>
+    </a>
+    <a href="cn_checkout.html" aria-label="中文">
+      <img src="cn_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">中文</span>
+    </a>
   </nav>
 </header>
 
+<hr>
+
 <main>
-  <h1>チェックアウト案内</h1>
+  <h1>チェックアウトのご案内</h1>
 
-  <p>チェックアウト時間は<strong>10:00まで</strong>です。</p>
+  <p>チェックアウト時間は <strong>10:00まで</strong> です。</p>
 
-  <h2>宿泊税について</h2>
-  <p>お部屋にご用意している<strong>封筒</strong>に宿泊税を入れてください。</p>
+  <h2>宿泊税のご案内</h2>
+  <p>チェックアウトの際、お部屋に用意されている <strong>封筒</strong> に宿泊税を入れてください。</p>
 
   <ul>
-    <li>宿泊税：<strong>大人 1名 1泊 200円</strong></li>
-    <li>12歳以下のお子様：<strong>無料</strong></li>
+    <li>宿泊税： <strong>大人1名1泊 200円</strong></li>
+    <li>12歳以下のお子様： <strong>無料</strong></li>
   </ul>
 
   <p>
     例）<br>
-    大人2名・3泊の場合<br>
+    大人2名、3泊ご宿泊の場合<br>
     2名 × 3泊 × 200円 = <strong>1,200円</strong>
   </p>
 
-  <h2>チェックアウト時間のご連絡</h2>
-  <p>
-    清掃準備のため、<br>
-    <strong>チェックアウト予定時刻を事前にホストへお知らせ</strong>いただけると助かります。
-  </p>
+  <section class="guest-list-notice">
+    <h2>宿泊者名簿の作成</h2>
+    <p>宿泊者名簿をまだ作成されていない方は、必ず作成をお願いいたします。</p>
+    <a href="https://tally.so/r/81aNvo" class="tally-link">
+      👉 宿泊者名簿を作成する
+    </a>
+  </section>
+
+  <h2>チェックアウト時間の連絡のお願い</h2>
+  <p>スムーズな清掃のため、チェックアウト予定時刻を事前にホストへお知らせいただけますと幸いです。</p>
 </main>
 
-<footer style="text-align:center;padding:2rem 0;color:#444;">
-  電話: +81-80-5684-0161<br>
-  メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-  住所: 福岡県福岡市中央区黒門6-4 3F
+<hr>
+
+<footer>
+  <p>
+    電話: +81-80-5684-0161<br>
+    メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+    住所: 福岡県福岡市中央区黒門 6-4 3F
+  </p>
 </footer>
 
 </body>

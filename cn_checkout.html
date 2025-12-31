@@ -2,16 +2,37 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>退房须知 | Cocone House</title>
+  <title>退房指南 | cocone house</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
     header{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;}
     header img.logo{max-width:140px;height:auto;}
     nav.lang{display:flex;gap:0.5rem;align-items:center;}
-    nav.lang a{display:flex;flex-direction:column;align-items:center;
-      font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
     nav.lang img{width:28px;height:auto;border-radius:4px;}
+    
+    /* 住宿登记表提请注意区域 */
+    .guest-list-notice {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: #fff9db; /* 浅黄色背景以提醒注意 */
+      border: 1px solid #fab005;
+      border-radius: 8px;
+    }
+    .guest-list-notice h2 {
+      margin-top: 0;
+      color: #e67700;
+      font-size: 1.2rem;
+    }
+    .tally-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #228be6;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
     @media (min-width:600px){
       body{max-width:700px;margin:auto;}
       nav.lang img{width:32px;}
@@ -20,45 +41,60 @@
     }
   </style>
 </head>
-
 <body>
 
 <header>
   <a href="cn_index.html">
-    <img src="coconehouse_rogo1.png" alt="Cocone House" class="logo">
+    <img src="coconehouse_rogo1.png" alt="cocone house 徽标" class="logo">
   </a>
 
   <nav class="lang" aria-label="语言选择">
-    <a href="jp_checkout.html"><img src="jp_flag.png"><span>日本語</span></a>
-    <a href="en_checkout.html"><img src="en_flag.png"><span>English</span></a>
-    <a href="kr_checkout.html"><img src="kr_flag.png"><span>한국어</span></a>
-    <a href="cn_checkout.html"><img src="cn_flag.png"><span>中文</span></a>
+    <a href="jp_checkout.html" aria-label="日本語">
+      <img src="jp_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">日本語</span>
+    </a>
+    <a href="en_checkout.html" aria-label="English">
+      <img src="en_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">English</span>
+    </a>
+    <a href="kr_checkout.html" aria-label="한국어">
+      <img src="kr_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">한국어</span>
+    </a>
+    <a href="cn_checkout.html" aria-label="中文">
+      <img src="cn_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">中文</span>
+    </a>
   </nav>
 </header>
 
 <hr>
 
 <main>
-  <h1>退房须知</h1>
+  <h1>退房指南</h1>
 
-  <p>退房时间为<strong>10:00 前</strong>。</p>
+  <p>退房时间为 <strong>10:00 之前</strong>。</p>
 
-  <h2>住宿税</h2>
-  <p>退房时请将住宿税放入房间内准备好的<strong>信封</strong>中。</p>
+  <h2>住宿税说明</h2>
+  <p>退房时，请将住宿税放入房间内准备好的 <strong>信封</strong> 中。</p>
 
   <ul>
-    <li>住宿税：<strong>成人 每人 每晚 200日元</strong></li>
-    <li>12岁以下儿童：<strong>免费</strong></li>
+    <li>住宿税： <strong>每位成人每晚 200 日元</strong></li>
+    <li>12 岁及以下儿童： <strong>免费</strong></li>
   </ul>
 
   <p>
-    例子：<br>
-    成人 2名，入住 3晚<br>
-    2 × 3 × 200日元 = <strong>1,200日元</strong>
+    示例）<br>
+    2 位成人入住 3 晚时<br>
+    2 人 × 3 晚 × 200 日元 = <strong>1,200 日元</strong>
   </p>
 
-  <h2>退房时间的告知</h2>
-  <p>为了便于整理，如能提前告知预计退房时间，我们将不胜感激。</p>
+  <section class="guest-list-notice">
+    <h2>填写住宿登记表</h2>
+    <p>如果您尚未填写住宿登记表，请务必在退房前完成填写。</p>
+    <a href="https://tally.so/r/81aNvo" class="tally-link">
+      👉 点击此处填写住宿登记表
+    </a>
+  </section>
+
+  <h2>告知预计退房时间请求</h2>
+  <p>为了确保清洁工作顺利进行，如果您能提前告知房东预计退房时间，我们将不胜感激。</p>
 </main>
 
 <hr>
@@ -66,8 +102,8 @@
 <footer>
   <p>
     电话: +81-80-5684-0161<br>
-    邮箱: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-    地址: 日本 福冈市 中央区 黑门 6-4 3F
+    电子邮件: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+    地址: 福冈县福冈市中央区黑门 6-4 3F
   </p>
 </footer>
 

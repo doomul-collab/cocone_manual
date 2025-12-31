@@ -11,6 +11,28 @@
     nav.lang{display:flex;gap:0.5rem;align-items:center;}
     nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
     nav.lang img{width:28px;height:auto;border-radius:4px;}
+    
+    /* 추가된 스타일: 숙박자 명부 안내 영역 */
+    .guest-list-notice {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: #fff9db; /* 연한 노란색 배경으로 주의 환기 */
+      border: 1px solid #fab005;
+      border-radius: 8px;
+    }
+    .guest-list-notice h2 {
+      margin-top: 0;
+      color: #e67700;
+      font-size: 1.2rem;
+    }
+    .tally-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #228be6;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
     @media (min-width:600px){
       body{max-width:700px;margin:auto;}
       nav.lang img{width:32px;}
@@ -62,6 +84,14 @@
     성인 2명, 3박 숙박 시<br>
     2명 × 3박 × 200엔 = <strong>1,200엔</strong>
   </p>
+
+  <section class="guest-list-notice">
+    <h2>숙박자명부 작성</h2>
+    <p>아직 숙박자명부를 작성하지 않으신 분은 반드시 숙박자명부를 작성해 주시기 바랍니다.</p>
+    <a href="https://tally.so/r/81aNvo" class="tally-link">
+      👉 숙박자명부 작성하러 가기
+    </a>
+  </section>
 
   <h2>체크아웃 시간 안내 요청</h2>
   <p>원활한 정리를 위해 체크아웃 예정 시간을 미리 호스트에게 알려주시면 감사하겠습니다.</p>
