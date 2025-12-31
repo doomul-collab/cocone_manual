@@ -5,7 +5,97 @@
 <title>Guest List | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; line-height: 1.6; color: #333; background-color: #f9f9f9; }
-  h1 { text-align: center; color: #000; }
-  .info-box { background: #e7f3ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #2196F3; }
-  label { display
+  body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; line-height: 1.6; background-color: #f9f9f9; }
+  h1 { text-align: center; font-size: 1.3rem; }
+  .section { background: white; padding: 20px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 20px; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+  button { margin-top: 20px; padding: 15px; width: 100%; border: none; border-radius: 8px; background: #007bff; color: #fff; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+  button:disabled { background: #ccc; }
+</style>
+</head>
+<body>
+
+<main>
+  <h1>Guest List Registration</h1>
+
+  <form id="guestForm">
+    <div class="section">
+      <label for="main_name">성함 (Representative Name)</label>
+      <input type="text" id="main_name" name="代表者氏名　Representative　Name" required>
+
+      <label for="checkin">체크인 날짜 (Check-in)</label>
+      <input type="date" id="checkin" name="Check_in" required>
+
+      <label for="main_phone">전화번호 (Tel No.)</label>
+      <input type="tel" id="main_phone" name="電話番号　Tel No." required>
+
+      <label for="main_address">주소 (Address)</label>
+      <input type="text" id="main_address" name="住所 Address" required>
+
+      <label for="photo">여권 사진 (Passport photo) - 선택 사항</label>
+      <input type="file" id="photo" name="Passport_photo" accept="image/*">
+    </div>
+
+    <button type="submit" class="btn-submit">등록 완료 (Submit)</button>
+  </form>
+</main>
+
+<script>
+const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbxh0csTv5HxeG0QAHT9kxqd1hsOkXiP0WkPH83zv_JUh8iQFJszAzbnQUq7J94juaVu/exec";
+const FORMSPREE_URL = "https://formspree.io/f/xregnbbl";
+
+document.getElementById('guestForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.innerText = "전송 중...";
+
+  const fullData = new FormData(this);
+
+  // 1. 구글 시트용 데이터 생성 (텍스트만)
+  const googleData = new URLSearchParams();
+  for (const [key, value] of fullData.entries()) {
+    if (!(value instanceof File)) {
+      googleData.append(key, value);
+    }
+  }
+
+  // 2. Formspree용 데이터 생성 (이름, 날짜, 사진만)
+  const formspreeData = new FormData();
+  formspreeData.append("Name", fullData.get("代表者氏名　Representative　Name"));
+  formspreeData.append("Check_in", fullData.get("Check_in"));
+  
+  const photoFile = document.getElementById('photo').files[0];
+  if (photoFile) {
+    formspreeData.append("Passport_photo", photoFile);
+  }
+
+  try {
+    // 텍스트는 구글 시트로 전송 (응답 대기 안 함)
+    fetch(GOOGLE_URL, { method: 'POST', body: googleData, mode: 'no-cors' });
+
+    // 사진+이름+날짜는 Formspree로 전송
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      body: formspreeData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      alert("성공적으로 등록되었습니다.");
+      location.reload();
+    } else {
+      const errorData = await response.json();
+      alert("Formspree 오류: " + (errorData.error || "인증을 확인하세요."));
+    }
+  } catch (err) {
+    alert("연결 오류: " + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerText = "등록 완료 (Submit)";
+  }
+});
+</script>
+</body>
+</html>
