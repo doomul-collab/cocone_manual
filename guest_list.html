@@ -5,33 +5,17 @@
 <title>Guest List | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  /* 접근성: 텍스트 가독성 및 터치 영역 최적화 */
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 700px; margin: auto; padding: 20px; line-height: 1.6; color: #222; background-color: #fff; }
   h1 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
-  
   .desc-container { background: #f0f7ff; padding: 20px; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #d1e7ff; }
   .desc-line { display: block; margin: 12px 0; font-size: 1rem; color: #1a1a1a; }
-
-  /* 입력 칸 가독성 향상: 아이폰 줌 방지를 위해 16px 이상 설정 */
   label { display: block; margin-top: 25px; font-weight: bold; font-size: 1.1rem; color: #000; }
-  input { 
-    width: 100%; padding: 14px; margin-top: 8px; border: 2px solid #ccc; border-radius: 8px; 
-    box-sizing: border-box; font-size: 16px; /* 중요: 16px 미만은 iOS 보이스오버 시 자동 확대되어 포커스를 방해함 */
-  }
+  input { width: 100%; padding: 14px; margin-top: 8px; border: 2px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
   input:focus { border-color: #007bff; outline: 3px solid rgba(0,123,255,0.2); }
-
-  /* 버튼 접근성: 클릭하기 충분한 크기 확보 */
-  button { 
-    margin-top: 25px; padding: 18px; width: 100%; border: none; border-radius: 10px; 
-    background: #222; color: #fff; font-size: 1.2rem; cursor: pointer; font-weight: bold;
-    min-height: 50px; /* 터치 영역 최소 크기 준수 */
-  }
+  button { margin-top: 25px; padding: 18px; width: 100%; border: none; border-radius: 10px; background: #222; color: #fff; font-size: 1.2rem; cursor: pointer; font-weight: bold; min-height: 50px; }
   .section { margin-top: 2.5rem; padding: 25px; border: 1px solid #ddd; border-radius: 12px; background-color: #fcfcfc; }
-  .section h2, .section h3 { margin-top: 0; color: #0056b3; font-size: 1.3rem; }
   .btn-add { background: #5a6268; }
   .btn-submit { background: #007bff; margin-bottom: 60px; }
-  
-  /* 안내 문구 가독성 */
   .photo-help { font-size: 0.9rem; color: #d9534f; margin-top: 8px; display: block; }
 </style>
 </head>
@@ -41,94 +25,117 @@
   <h1 tabindex="0">Guest List Registration</h1>
 
   <div class="desc-container" role="region" aria-label="Information">
-    <p class="desc-line">日本の法律により宿泊者名簿の作成が義務付けられています。</p>
-    <p class="desc-line">Registration is required by Japanese law.</p>
     <p class="desc-line">일본 법에 따라 숙박자 명부 작성이 의무화되어 있습니다.</p>
-    <p class="desc-line">根据日本法律，必须填写住宿者登记表。</p>
+    <p class="desc-line">Registration is required by Japanese law.</p>
   </div>
 
-  <form id="guestForm">
-    <input type="hidden" id="group_id" aria-hidden="true">
+  <form id="guestForm" enctype="multipart/form-data">
+    <section class="section">
+      <h2>Main Guest (代表者)</h2>
 
-    <section class="section" aria-labelledby="main-guest-title">
-      <h2 id="main-guest-title">Main Guest (代表者)</h2>
+      <label for="main_name">성함 Full Name (氏名)</label>
+      <input type="text" id="main_name" name="성함" required aria-required="true">
 
-      <label for="main_name">Full Name (氏名)</label>
-      <input type="text" id="main_name" placeholder="Name" required aria-required="true" autocomplete="name">
+      <label for="main_nat">국적 Nationality (国籍)</label>
+      <input type="text" id="main_nat" name="국적">
 
-      <label for="main_nat">Nationality (国籍)</label>
-      <input type="text" id="main_nat" placeholder="Country">
+      <label for="main_passport">여권번호 Passport Number</label>
+      <input type="text" id="main_passport" name="여권번호">
 
-      <label for="main_passport">Passport Number (旅券番号)</label>
-      <input type="text" id="main_passport">
+      <label for="main_phone">전화번호 Phone Number</label>
+      <input type="tel" id="main_phone" name="전화번호" required aria-required="true">
 
-      <label for="main_job">Job (職業)</label>
-      <input type="text" id="main_job">
+      <label for="main_checkin">체크인 날짜 Check-in</label>
+      <input type="date" id="main_checkin" name="체크인_날짜" required aria-required="true">
 
-      <label for="main_phone">Phone Number (電話番号)</label>
-      <input type="tel" id="main_phone" required aria-required="true" placeholder="+82...">
+      <label for="main_checkout">체크아웃 날짜 Check-out</label>
+      <input type="date" id="main_checkout" name="체크아웃_날짜" required aria-required="true">
 
-      <label for="main_address">Home Address (住所)</label>
-      <input type="text" id="main_address" required aria-required="true">
-
-      <label for="main_checkin">Check-in Date (チェックイン日)</label>
-      <input type="date" id="main_checkin" required aria-required="true">
-
-      <label for="main_checkout">Check-out Date (チェックアウト日)</label>
-      <input type="date" id="main_checkout" required aria-required="true">
-
-      <label for="main_photo">Passport Photo Upload (パスポート写真添付)</label>
-      <span class="photo-help" id="photo_desc">Please take a clear photo of your passport. (パスポートの写真を撮ってください)</span>
-      <input type="file" id="main_photo" accept="image/*" aria-describedby="photo_desc">
+      <label for="main_photo">여권 사진 첨부 Passport Photo</label>
+      <span class="photo-help">여권의 인적사항 페이지를 찍어주세요.</span>
+      <input type="file" id="main_photo" name="여권_사진" accept="image/*" required>
     </section>
 
     <div id="companions_area"></div>
 
     <button type="button" class="btn-add" onclick="addCompanion()">
-      Add companion (同伴者の追加)
+      동반자 추가 (Add companion)
     </button>
     
-    <button type="button" class="btn-submit" onclick="sendData()">
-      Submit (送信)
+    <button type="submit" class="btn-submit">
+      등록하기 (Submit)
     </button>
   </form>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://mtviblngovojyljonltq.supabase.co";
-const SUPABASE_KEY = "sb_publishable_sJ4BTJ4wm1Nx1Mzelrj0rQ_mdDvqXLG";
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-document.getElementById("group_id").value = crypto.randomUUID();
+// 1. 구글 시트 Apps Script 주소
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxh0csTv5HxeG0QAHT9kxqd1hsOkXiP0WkPH83zv_JUh8iQFJszAzbnQUq7J94juaVu/exec";
+// 2. Formspree 주소
+const FORMSPREE_URL = "https://formspree.io/f/xregnbbl";
 
 let compCount = 0;
 function addCompanion(){
-  if(compCount >= 4){ alert("Maximum 4 guests."); return; }
+  if(compCount >= 4){ alert("최대 4명까지 추가 가능합니다."); return; }
   compCount++;
-
   const area = document.getElementById("companions_area");
   const div = document.createElement("section");
   div.className = "section";
-  div.setAttribute('aria-labelledby', `comp-title-${compCount}`);
   div.innerHTML = `
-    <h3 id="comp-title-${compCount}">Companion #${compCount + 1}</h3>
-    <label for="c${compCount}_name">Full Name</label>
-    <input type="text" id="c${compCount}_name" required aria-required="true">
-    <label for="c${compCount}_job">Job</label>
-    <input type="text" id="c${compCount}_job">
-    <label for="c${compCount}_passport">Passport Number</label>
-    <input type="text" id="c${compCount}_passport">
-    <label for="c${compCount}_photo">Passport Photo (Optional)</label>
-    <input type="file" id="c${compCount}_photo" accept="image/*">
+    <h3>Companion #${compCount}</h3>
+    <label>성함 Full Name</label>
+    <input type="text" name="동반자${compCount}_이름" required>
+    <label>여권번호 Passport</label>
+    <input type="text" name="동반자${compCount}_여권번호">
+    <label>여권 사진</label>
+    <input type="file" name="동반자${compCount}_사진" accept="image/*">
   `;
   area.appendChild(div);
-  // 추가 후 첫 번째 입력창으로 포커스 이동 (보이스오버 대응)
-  document.getElementById(`c${compCount}_name`).focus();
 }
 
-// ... [중략: uploadImage 및 sendData 함수 로직 유지] ...
-// (단, 성공 시 alert 대신 화면에 텍스트를 출력하여 보이스오버가 읽게 할 수 있습니다.)
+document.getElementById('guestForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  
+  // 버튼 비활성화
+  const submitBtn = document.querySelector('.btn-submit');
+  submitBtn.disabled = true;
+  submitBtn.innerText = "전송 중... (Sending...)";
+
+  try {
+    // 1. 구글 시트로 데이터 전송 (텍스트만)
+    const googleData = new URLSearchParams();
+    for (const pair of formData.entries()) {
+      if (!(pair[1] instanceof File)) {
+        googleData.append(pair[0], pair[1]);
+      }
+    }
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      body: googleData,
+      mode: 'no-cors'
+    });
+
+    // 2. Formspree로 데이터 전송 (사진 포함 전체)
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      alert("등록이 완료되었습니다. 감사합니다!\nRegistration complete. Thank you!");
+      location.reload();
+    } else {
+      throw new Error('Formspree 전송 실패');
+    }
+  } catch (error) {
+    console.error(error);
+    alert("오류가 발생했습니다. 다시 시도해주세요.");
+    submitBtn.disabled = false;
+    submitBtn.innerText = "등록하기 (Submit)";
+  }
+});
 </script>
 </body>
 </html>
