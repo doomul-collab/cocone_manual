@@ -5,15 +5,15 @@
 <title>Guest List | Cocone House</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 700px; margin: auto; padding: 20px; line-height: 1.6; color: #222; background-color: #fff; }
-  h1 { text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
-  .desc-container { background: #f0f7ff; padding: 20px; border-radius: 10px; margin-bottom: 2rem; border: 1px solid #d1e7ff; }
-  label { display: block; margin-top: 25px; font-weight: bold; font-size: 1.1rem; color: #000; }
-  input { width: 100%; padding: 14px; margin-top: 8px; border: 2px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-  button { margin-top: 25px; padding: 18px; width: 100%; border: none; border-radius: 10px; background: #222; color: #fff; font-size: 1.2rem; cursor: pointer; font-weight: bold; min-height: 50px; }
-  .section { margin-top: 2.5rem; padding: 25px; border: 1px solid #ddd; border-radius: 12px; background-color: #fcfcfc; }
-  .btn-add { background: #5a6268; }
-  .btn-submit { background: #007bff; margin-bottom: 60px; }
+  body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; line-height: 1.6; color: #333; background-color: #f9f9f9; }
+  h1 { text-align: center; color: #000; }
+  .info-box { background: #e7f3ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #2196F3; }
+  label { display: block; margin-top: 15px; font-weight: bold; }
+  input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+  button { margin-top: 20px; padding: 15px; width: 100%; border: none; border-radius: 8px; background: #007bff; color: #fff; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+  button:disabled { background: #ccc; }
+  .section { margin-top: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fff; }
+  .btn-add { background: #6c757d; margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -21,94 +21,92 @@
 <main>
   <h1>Guest List Registration</h1>
 
-  <div class="desc-container">
-    <p>일본 법에 따라 숙박자 명부 작성이 의무화되어 있습니다.</p>
+  <div class="info-box" role="note">
+    <p>일본 숙박업법에 의거하여 숙박자 명부를 작성해 주시기 바랍니다. 사진은 선택 사항입니다.</p>
   </div>
 
-  <form id="guestForm" enctype="multipart/form-data">
+  <form id="guestForm">
     <section class="section">
-      <h2>Main Guest (代表者)</h2>
+      <h2>대표 숙박자 정보 (Main Guest)</h2>
 
       <label for="main_name">성함 (Representative Name)</label>
-      <input type="text" name="代表者氏名　Representative　Name" required>
-
-      <label for="main_email">이메일 (E-mail)</label>
-      <input type="email" name="E-mail">
+      <input type="text" id="main_name" name="代表者氏名　Representative　Name" required>
 
       <label for="main_phone">전화번호 (Tel No.)</label>
-      <input type="tel" name="電話번호　Tel No." required>
+      <input type="tel" id="main_phone" name="電話번호　Tel No." required>
 
       <label for="main_address">주소 (Address)</label>
-      <input type="text" name="住所 Address" required>
+      <input type="text" id="main_address" name="住所 Address" required>
 
       <label for="main_job">직업 (Job)</label>
-      <input type="text" name="職業 Job">
+      <input type="text" id="main_job" name="職業 Job">
 
       <label for="main_nat">국적 (Country)</label>
-      <input type="text" name="国籍Contry">
+      <input type="text" id="main_nat" name="国籍Contry">
 
       <label for="main_passport">여권번호 (Passport no.)</label>
-      <input type="text" name="旅券番号Passport no.">
+      <input type="text" id="main_passport" name="旅券番号Passport no.">
 
-      <label for="checkin">체크인 (Check-in)</label>
-      <input type="date" name="Check_in" required>
+      <label for="checkin">체크인 날짜 (Check-in)</label>
+      <input type="date" id="checkin" name="Check_in" required>
 
-      <label for="checkout">체크아웃 (Check_out)</label>
-      <input type="date" name="Check_out" required>
+      <label for="checkout">체크아웃 날짜 (Check-out)</label>
+      <input type="date" id="checkout" name="Check_out" required>
 
       <label for="room_no">방 번호 (Room no.)</label>
-      <input type="text" name="部屋番号 Room no.">
+      <input type="text" id="room_no" name="部屋番号 Room no.">
 
-      <label for="photo">여권 사진 (Passport photo)</label>
-      <input type="file" name="Passport_photo" accept="image/*" required>
+      <label for="photo">여권 사진 (Passport photo) - 선택 사항</label>
+      <input type="file" id="photo" name="Passport_photo" accept="image/*">
     </section>
 
     <div id="companions_area"></div>
 
-    <button type="button" class="btn-add" onclick="addCompanion()">동반자 추가 (Add companion)</button>
-    <button type="submit" class="btn-submit">등록하기 (Submit)</button>
+    <button type="button" class="btn-add" onclick="addCompanion()">동반자 추가 (Add Companion)</button>
+    <button type="submit" class="btn-submit">등록 완료 (Submit)</button>
   </form>
 </main>
 
 <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxh0csTv5HxeG0QAHT9kxqd1hsOkXiP0WkPH83zv_JUh8iQFJszAzbnQUq7J94juaVu/exec";
+const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbxh0csTv5HxeG0QAHT9kxqd1hsOkXiP0WkPH83zv_JUh8iQFJszAzbnQUq7J94juaVu/exec";
 const FORMSPREE_URL = "https://formspree.io/f/xregnbbl";
 
-let compCount = 1;
+let count = 1;
 function addCompanion(){
-  if(compCount >= 3) return;
-  compCount++;
+  if(count >= 3) { alert("동반자는 최대 2명까지 추가 가능합니다."); return; }
+  count++;
   const area = document.getElementById("companions_area");
   const div = document.createElement("section");
   div.className = "section";
   div.innerHTML = `
-    <h3>Companion #${compCount}</h3>
+    <h3>동반자 ${count} (Companion)</h3>
     <label>성함 (Name)</label>
-    <input type="text" name="氏名${compCount}　Name${compCount}" required>
+    <input type="text" name="氏名${count}　Name${count}" required>
     <label>주소 (Address)</label>
-    <input type="text" name="住所${compCount} Address${compCount}">
+    <input type="text" name="住所${count} Address${count}">
     <label>여권번호 (Passport no.)</label>
-    <input type="text" name="旅券番号${compCount} Passport no.${compCount}">
+    <input type="text" name="旅券番号${count} Passport no.${count}">
   `;
   area.appendChild(div);
 }
 
 document.getElementById('guestForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.innerText = "전송 중...";
+
   const formData = new FormData(this);
-  const submitBtn = document.querySelector('.btn-submit');
-  submitBtn.disabled = true;
-  submitBtn.innerText = "전송 중...";
 
   try {
-    // 1. 구글 시트로 텍스트 전송
+    // 1. 구글 시트로 데이터 전송 (텍스트)
     const googleData = new URLSearchParams();
     for (const [key, value] of formData.entries()) {
       if (!(value instanceof File)) googleData.append(key, value);
     }
-    fetch(GOOGLE_SCRIPT_URL, { method: 'POST', body: googleData, mode: 'no-cors' });
+    fetch(GOOGLE_URL, { method: 'POST', body: googleData, mode: 'no-cors' });
 
-    // 2. Formspree로 전송 (사진 포함)
+    // 2. Formspree로 데이터 전송 (사진 포함)
     const response = await fetch(FORMSPREE_URL, {
       method: 'POST',
       body: formData,
@@ -116,18 +114,13 @@ document.getElementById('guestForm').addEventListener('submit', async function(e
     });
 
     if (response.ok) {
-      alert("전송 완료! 감사합니다.");
+      alert("전송 성공! 시트와 이메일을 확인하세요.");
       location.reload();
     } else {
-      alert("전송 실패. Formspree 연결을 확인해 주세요.");
+      const result = await response.json();
+      alert("전송 실패: " + (result.error || "Formspree 인증을 확인하세요."));
     }
-  } catch (e) {
-    alert("오류가 발생했습니다.");
+  } catch (err) {
+    alert("오류: " + err.message);
   } finally {
-    submitBtn.disabled = false;
-    submitBtn.innerText = "등록하기 (Submit)";
-  }
-});
-</script>
-</body>
-</html>
+    btn.disabled = false
