@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>숙박자 명부 작성 | cocone house</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;padding:0 1rem;}
+    header{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;}
+    header img.logo{max-width:140px;height:auto;}
+    nav.lang{display:flex;gap:0.5rem;align-items:center;}
+    nav.lang a{display:flex;flex-direction:column;align-items:center;font-size:0.7rem;color:#000;text-decoration:none;}
+    nav.lang img{width:28px;height:auto;border-radius:4px;}
+    
+    /* 본문 스타일 */
+    .notice-box {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-left: 4px solid #000;
+      margin-bottom: 1.5rem;
+    }
+    .notice-box p {
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+    .highlight { color: #d9480f; } /* 강조 문구 색상 */
+
+    /* Tally 폼을 담는 액자(iframe) 스타일 */
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      height: 800px; /* 폼 길이에 따라 조절 가능 */
+      border: none;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (min-width:600px){
+      body{max-width:700px;margin:auto;}
+      nav.lang img{width:32px;}
+      nav.lang a{font-size:0.8rem;}
+      header img.logo{max-width:160px;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="kr_index.html">
+    <img src="coconehouse_rogo1.png" alt="cocone house 로고" class="logo">
+  </a>
+
+  <nav class="lang" aria-label="언어 선택">
+    <a href="jp_guest.html" aria-label="日本語">
+      <img src="jp_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">日本語</span>
+    </a>
+    <a href="en_guest.html" aria-label="English">
+      <img src="en_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">English</span>
+    </a>
+    <a href="kr_guest.html" aria-label="한국어">
+      <img src="kr_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">한국어</span>
+    </a>
+    <a href="cn_guest.html" aria-label="中文">
+      <img src="cn_flag.png" alt="" aria-hidden="true"><span aria-hidden="true">中文</span>
+    </a>
+  </nav>
+</header>
+
+<hr>
+
+<main>
+  <h1>숙박자 명부 작성</h1>
+
+  <div class="notice-box">
+    <p>📌 일본 법령(여관업법 및 주택숙박사업법)에 의하여 반드시 숙박자 명단을 작성해야 합니다.</p>
+    <p class="highlight">📌 일본에 거주하지 않으시는 분은 여권 사진도 반드시 첨부해 주세요.</p>
+  </div>
+
+  <div class="iframe-container">
+    <iframe 
+      src="https://tally.so/embed/81aNvo?hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+      loading="lazy" 
+      width="100%" 
+      height="100%" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0" 
+      title="숙박자 명부 작성 폼">
+    </iframe>
+  </div>
+</main>
+
+<hr>
+
+<footer>
+  <p>
+    전화: +81-80-5684-0161<br>
+    이메일: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
+    주소: 福岡県福岡市中央区黒門 6-4 3F
+  </p>
+</footer>
+
+</body>
+</html>
