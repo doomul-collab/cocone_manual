@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>チェックインのご案内 | cocone house</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
   <style>
+    body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif; line-height: 1.6; margin: 0; padding: 0 1rem; color: #333; }
     header{
       position: sticky;
       top: 0;
@@ -18,15 +18,22 @@
       justify-content:space-between;
     }
     .logo img{height:50px;width:auto;}
-    .langs a{margin:0 0.4rem;}
-    .note{color:#b00;font-weight:bold;margin-top:0.3rem;}
+    .langs a{margin:0 0.4rem; text-decoration: none; color: #000; font-size: 0.9rem;}
+    
+    main { max-width: 700px; margin: auto; padding: 1rem 0; }
+    h1 { border-bottom: 2px solid #2c3e50; padding-bottom: 0.5rem; }
+    h2 { color: #2c3e50; margin-top: 2rem; }
+    
+    .note{color:#b00; font-weight:bold; margin-top:0.3rem;}
+    .info-list { padding-left: 1.2rem; }
+    .info-list li { margin-bottom: 0.8rem; }
 
     /* 宿泊者名簿バナースタイル */
     .guest-list-banner {
       margin: 2.5rem 0;
       padding: 1.5rem;
-      background-color: #f0f7ff; /* 薄い青色の背景 */
-      border: 2px solid #007bff; /* 青色の枠線 */
+      background-color: #f0f7ff;
+      border: 2px solid #007bff;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,123,255,0.1);
@@ -39,7 +46,7 @@
     .tally-link-button {
       display: inline-block;
       margin-top: 1rem;
-      padding: 10px 25px;
+      padding: 12px 30px;
       background-color: #007bff;
       color: white !important;
       text-decoration: none !important;
@@ -50,6 +57,8 @@
     .tally-link-button:hover {
       background-color: #0056b3;
     }
+
+    footer { text-align: center; padding: 2rem 0; color: #666; font-size: 0.9rem; border-top: 1px solid #eee; }
   </style>
 </head>
 <body>
@@ -70,55 +79,46 @@
 <main>
   <h1>チェックインのご案内</h1>
 
-  <p>チェックインは <strong>15:00から</strong> 可能です。</p>
+  <p>チェックインは <strong>15:00から</strong> 可能でございます。</p>
 
-  <h2>セルフチェックインのご案内</h2>
-
+  <h2>セルフチェックインについて</h2>
   <p>
-    cocone houseは <strong>セルフチェックイン</strong> 方式で運営されています。<br>
-    お部屋の番号はチェックイン前に、ホストから個別メッセージでご案内いたします。
+    cocone houseは<strong>セルフチェックイン方式</strong>となっております。<br>
+    お部屋番号と入室パスワードは、<strong>宿泊者名簿をご記入いただいた後、メールにてお送りいたします。</strong>
   </p>
 
   <h2>入室方法</h2>
-
-  <p>出入口のドアはデジタルドアロックを使用しています。</p>
-
-  <ul>
+  <ul class="info-list">
+    <li>1. 客室ドアのデジタルドアロックのカバーを上に押し上げてください。</li>
     <li>
-      <strong>Booking.com / Airbnbでご予約の場合</strong><br>
-      予約時に登録した電話番号の <strong>下4桁 + 星印(*)</strong> を入力するとドアが開きます。<br>
-      <span class="note">例) 1234* → 必ず数字の後に * を押してください。</span>
-    </li>
-
-    <li>
-      <strong>その他のサイト / 直接予約の場合</strong><br>
-      暗証番号はホ스트が別途ご案内いたします。<br>
-      暗証番号を入力後、<strong>必ず * (星印) を押して</strong> ド아を開けてください。<br>
-      <span class="note">※数字と星印(*)を両方押さないと開きません。</span>
+      2. ホストがお伝えしたパスワード<strong>[例: 1234*]</strong>を入力してください。<br>
+      <span class="note">* パスワードは、ご予約時に入力された電話番号の下4桁に設定されます。（Agoda経由のお客様は別途ご案内いたします）</span>
     </li>
   </ul>
 
   <p>
-    ※問題が発生した場合は、いつでもホストにご連絡ください。<br>
-    到着予定時間を事前にお知らせいただけますと、スムーズなチェックインの助けとなります。
+    ※ 何か不都合がございましたら、いつでもホストまでご連絡ください。<br>
+    到着予定時刻を事前にお知らせいただけますと、スムーズなチェックインの助けとなります。
   </p>
 
   <section class="guest-list-banner">
     <h2>✍️ 宿泊者名簿作成のご案内</h2>
     <p>
       日本の法令（旅館業法および住宅宿泊事業法）に基づき、<br>
-      <strong>すべての宿泊者は必ず宿泊者名簿を作成</strong>する必要があります。
+      <strong>すべてのご宿泊者様に宿泊者名簿へのご記入</strong>をお願いしております。
     </p>
-    <a href="jp_guest.html" class="tally-link-button">
-      宿泊者名簿を作成する
+    <a href="https://script.google.com/macros/s/AKfycbzrNTMEoX5LM4xR6iZ3cu5Kfn5SFnwXwpoSZxaIv7kQCFL6FvUnVuX1QjJ6aPb9BkofAQ/exec" 
+       target="_blank" 
+       class="tally-link-button">
+      宿泊者名簿を記入する
     </a>
   </section>
 </main>
 
-<footer style="text-align:center;padding:2rem 0;color:#444;">
+<footer>
   電話: +81-80-5684-0161<br>
   メール: <a href="mailto:cocone.fukuoka@gmail.com">cocone.fukuoka@gmail.com</a><br>
-  住所: 福岡県福岡市中央区黒門 6-4 (3F)
+  住所: 福岡県福岡市中央区黒門 6-4 3F
 </footer>
 
 </body>
